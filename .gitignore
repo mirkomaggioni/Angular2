@@ -6,6 +6,8 @@
 *.user
 *.userosscache
 *.sln.docstates
+/Angular2.Web/app/**/*.js
+/Angular2.Web/app/**/*.map
 
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
@@ -240,3 +242,4 @@ ModelManifest.xml
 
 # FAKE - F# Make
 .fake/
+
