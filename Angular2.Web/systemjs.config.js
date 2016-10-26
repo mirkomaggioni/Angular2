@@ -15,9 +15,8 @@
       '@angular/router': 'npm:@angular/router/bundles/router.umd.js',
       '@angular/forms': 'npm:@angular/forms/bundles/forms.umd.js',
       'rxjs': 'npm:rxjs',
-      'angular-in-memory-web-api': 'npm:angular-in-memory-web-api'
-      // ,
-      // 'ng2-toastr': 'npm:ng2-toastr/bundles'
+      'angular-in-memory-web-api': 'npm:angular-in-memory-web-api',
+      'ng2-toastr': 'npm:ng2-toastr'
     },
     packages: {
       app: {
@@ -30,12 +29,11 @@
       'angular-in-memory-web-api': {
         main: './index.js',
         defaultExtension: 'js'
+      },
+      'ng2-toastr': {
+        main: './ng2-toastr.js',
+        defaultExtension: 'js'
       }
-      // ,
-      // 'ng2-toastr': {
-      //   main: './ng2-toastr.min.js',
-      //   defaultExtension: 'js'
-      // }
     }
   });
 })(this);

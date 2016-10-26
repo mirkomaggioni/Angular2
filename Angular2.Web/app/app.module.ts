@@ -3,7 +3,7 @@ import { Routes, RouterModule } from "@angular/router";
 import { FormsModule } from "@angular/forms";
 import { HttpModule } from "@angular/http";
 import { BrowserModule } from "@angular/platform-browser";
-// import { ToastModule } from "ng2-toastr/ng2-toastr";
+import { ToastModule } from "ng2-toastr/ng2-toastr";
 
 import { AppComponent } from "../app/app.component";
 import { CustomersComponent } from "../app/components/customers";
@@ -28,9 +28,8 @@ import { InvoicesComponent } from "../app/components/invoices";
                 component: InvoicesComponent
             }
         ]),
-        HttpModule
-        // ,
-        // ToastModule
+        HttpModule,
+        ToastModule
     ],
     declarations: [
         AppComponent,
