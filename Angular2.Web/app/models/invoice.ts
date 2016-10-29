@@ -1,5 +1,5 @@
 
-export interface IInvoice {
+export class Invoice {
     Id: string;
     IdAttachment: string;
     IdCustomer: string;

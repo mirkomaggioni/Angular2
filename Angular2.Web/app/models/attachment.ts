@@ -1,5 +1,5 @@
 
-export class IAttachment {
+export class Attachment {
     Id: string;
     Name: string;
     Path: string;

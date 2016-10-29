@@ -1,4 +1,5 @@
 import { NgModule } from "@angular/core";
+import { LocationStrategy, HashLocationStrategy } from "@angular/common";
 import { Routes, RouterModule } from "@angular/router";
 import { FormsModule } from "@angular/forms";
 import { HttpModule } from "@angular/http";
@@ -35,6 +36,9 @@ import { InvoicesComponent } from "../app/components/invoices";
         AppComponent,
         CustomersComponent,
         InvoicesComponent
+    ],
+    providers: [
+        { provide: LocationStrategy, useClass: HashLocationStrategy }  
     ],
     bootstrap: [
         AppComponent

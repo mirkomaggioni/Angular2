@@ -1,5 +1,5 @@
 
-export interface ICity {
+export class City {
     Id: string;
     IdDistrict: string;
     Name: string;

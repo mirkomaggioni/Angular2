@@ -1,5 +1,5 @@
 
-export class ICustomer {
+export class Customer {
     Id: string;
     IdCity: string;
     Name: string;
