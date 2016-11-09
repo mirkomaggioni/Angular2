@@ -53,11 +53,27 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DataLayer\Attachment.cs" />
+    <Compile Include="DataLayer\City.cs" />
+    <Compile Include="DataLayer\Context.cs" />
+    <Compile Include="DataLayer\Customer.cs" />
+    <Compile Include="DataLayer\District.cs" />
+    <Compile Include="DataLayer\Invoice.cs" />
+    <Compile Include="Migrations\201611090532057_AddingTables.cs" />
+    <Compile Include="Migrations\201611090532057_AddingTables.Designer.cs">
+      <DependentUpon>201611090532057_AddingTables.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201611090532057_AddingTables.resx">
+      <DependentUpon>201611090532057_AddingTables.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

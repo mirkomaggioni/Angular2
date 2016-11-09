@@ -13,7 +13,7 @@ namespace Angular2.Core.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "201610310715193_AddingTables"; }
+            get { return "201611090532057_AddingTables"; }
         }
         
         string IMigrationMetadata.Source
