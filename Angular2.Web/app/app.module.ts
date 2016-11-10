@@ -17,6 +17,7 @@ import "rxjs/add/operator/toPromise";
 import { AppComponent } from "../app/app.component";
 import { CustomersComponent } from "../app/components/customers";
 import { InvoicesComponent } from "../app/components/invoices";
+import { AlertService } from "../app/services/alert";
 import { AttachmentService } from "../app/services/attachment";
 import { CityService } from "../app/services/city";
 import { CustomerService } from "../app/services/customer";
@@ -51,7 +52,11 @@ import { InvoiceService } from "../app/services/invoice";
     ],
     providers: [
         { provide: LocationStrategy, useClass: HashLocationStrategy },
-        CustomerService
+        AlertService,
+        AttachmentService,
+        CityService,
+        CustomerService,
+        InvoiceService
     ],
     bootstrap: [
         AppComponent

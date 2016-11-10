@@ -1,5 +1,5 @@
 <div *ngIf="!customer">
-    <div *ngFor="let customer of customers">
+    <div *ngFor="let customer of customers" (ngClick)="Edit(customer)">
         {{customer.Name}} - {{customer.Address}}
     </div>
 </div>
