@@ -6,9 +6,18 @@ import { HttpModule } from "@angular/http";
 import { BrowserModule } from "@angular/platform-browser";
 import { ToastModule } from "ng2-toastr/ng2-toastr";
 
+import "rxjs/add/observable/throw";
+import "rxjs/add/operator/catch";
+import "rxjs/add/operator/debounceTime";
+import "rxjs/add/operator/distinctUntilChanged";
+import "rxjs/add/operator/map";
+import "rxjs/add/operator/switchMap";
+import "rxjs/add/operator/toPromise";
+
 import { AppComponent } from "../app/app.component";
 import { CustomersComponent } from "../app/components/customers";
 import { InvoicesComponent } from "../app/components/invoices";
+import { CustomerService } from "../app/services/customer";
 
 @NgModule ({
     imports: [ 
@@ -17,7 +26,7 @@ import { InvoicesComponent } from "../app/components/invoices";
         RouterModule.forRoot([
             { 
                 path: "",
-                redirectTo: "invoices",
+                redirectTo: "customers",
                 pathMatch: "full" 
             },
             { 
@@ -38,7 +47,8 @@ import { InvoicesComponent } from "../app/components/invoices";
         InvoicesComponent
     ],
     providers: [
-        { provide: LocationStrategy, useClass: HashLocationStrategy }  
+        { provide: LocationStrategy, useClass: HashLocationStrategy },
+        CustomerService
     ],
     bootstrap: [
         AppComponent

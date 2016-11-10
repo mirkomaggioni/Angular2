@@ -1,5 +1,5 @@
 import { Http, Response, Headers, RequestOptions } from "@angular/http";
-import { Observable } from "rxjs";
+import { Observable } from "rxjs/Observable";
 
 export class WebApi<T> {
     protected url: string;
@@ -11,30 +11,31 @@ export class WebApi<T> {
         this.options = new RequestOptions({ headers: headers });
     }
 
-    protected GetAll(): Observable<T[]> {
+    public GetAll(): Observable<T[]> {
         return this.http.get(this.url, this.options).map(this.extractData).catch(this.handleError);
     };
 
-    protected Get(id: string): Observable<T> {
+    public Get(id: string): Observable<T> {
         return this.http.get(this.url + "/" + id, this.options).map(this.extractData).catch(this.handleError);
     }
 
-    protected Put(id: string, entity: T): Observable<boolean> {
+    public Put(id: string, entity: T): Observable<boolean> {
         return this.http.put(this.url + "/" + id, JSON.stringify(entity), this.options).map(this.extractData).catch(this.handleError);        
     }
 
-    protected Post(entity: T): Observable<T> {
+    public Post(entity: T): Observable<T> {
         return this.http.post(this.url, JSON.stringify(entity), this.options).map(this.extractData).catch(this.handleError);
     }
 
-    protected Delete(id: string): Observable<boolean> {
+    public Delete(id: string): Observable<boolean> {
         return this.http.delete(this.url + "/" + id, this.options).map(this.extractData).catch(this.handleError);
     }
 
     private extractData(res: Response) {
         let body = res.json();
-        return body.data || {};
+        return body || {};
     }
+    
     private handleError(error: any) {
         let errMsg = (error.message) ? error.message :
             error.status ? `${error.status} - ${error.statusText}` : 'Server error';

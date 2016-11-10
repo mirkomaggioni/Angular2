@@ -1,4 +1,6 @@
 import { Component } from "@angular/core";
+import { Customer } from "../models/customer";
+import { CustomerService } from "../services/customer";
 
 @Component({
     selector: "customers",
@@ -6,5 +8,15 @@ import { Component } from "@angular/core";
 })
 
 export class CustomersComponent {
-    
+    public customers: Customer[];
+    public customer;
+
+    constructor(public customerService: CustomerService) {
+        this.Load();
+    }
+
+    public Load() {
+        this.customerService.GetAll().subscribe((data) => this.customers = data);
+    }
+
 }

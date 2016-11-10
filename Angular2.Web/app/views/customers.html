@@ -1,2 +1,12 @@
+<div *ngIf="!customer">
+    <div *ngFor="let customer of customers">
+        {{customer.Name}} - {{customer.Address}}
+    </div>
+</div>
 
-CUSTOMERS
+<div *ngIf="customer">
+    Name
+    <input type="text" [(ngModel)]="customer.Name" />
+    Address
+    <input type="text" [(ngModel)]="customer.Address" />
+</div>
