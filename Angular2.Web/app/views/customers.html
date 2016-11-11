@@ -5,8 +5,8 @@
 </div>
 
 <div *ngIf="customer">
-    Name
+    {{ "NAME" | translate }}
     <input type="text" [(ngModel)]="customer.Name" />
-    Address
+    {{ "ADDRESS" | translate }}
     <input type="text" [(ngModel)]="customer.Address" />
 </div>

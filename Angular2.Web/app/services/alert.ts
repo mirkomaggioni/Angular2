@@ -1,27 +1,24 @@
 import { Injectable } from "@angular/core";
-import { ToastsManager, ToastOptions } from "ng2-toastr";
+import { ToastsManager} from "ng2-toastr";
 
 @Injectable()
 export class AlertService {
 
-    constructor (public manager: ToastsManager, public options: ToastOptions ) {
-        options.autoDismiss = true;
-        
-    }
+    constructor (public manager: ToastsManager) {}
 
     public Info(message: string) {
-        this.manager.info(message, null, this.options);
+        this.manager.info(message);
     }
 
     public Error(message: string) {
-        this.manager.error(message, null, this.options);
+        this.manager.error(message);
     }
 
     public Warning(message: string) {
-        this.manager.warning(message, null, this.options);
+        this.manager.warning(message);
     }
 
     public Success(message: string) {
-        this.manager.success(message, null, this.options);
+        this.manager.success(message);
     }
 }

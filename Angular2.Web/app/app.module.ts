@@ -4,7 +4,8 @@ import { Routes, RouterModule } from "@angular/router";
 import { FormsModule } from "@angular/forms";
 import { HttpModule } from "@angular/http";
 import { BrowserModule } from "@angular/platform-browser";
-import { ToastModule } from "ng2-toastr/ng2-toastr";
+import { TranslateModule } from "ng2-translate";
+import { ToastModule, ToastOptions } from "ng2-toastr/ng2-toastr";
 
 import "rxjs/add/observable/throw";
 import "rxjs/add/operator/catch";
@@ -22,6 +23,11 @@ import { AttachmentService } from "../app/services/attachment";
 import { CityService } from "../app/services/city";
 import { CustomerService } from "../app/services/customer";
 import { InvoiceService } from "../app/services/invoice";
+
+let options: any = {
+  autoDismiss: true,
+  positionClass: 'toast-bottom-right',
+};
 
 @NgModule ({
     imports: [ 
@@ -42,8 +48,12 @@ import { InvoiceService } from "../app/services/invoice";
                 component: InvoicesComponent
             }
         ]),
+        TranslateModule.forRoot(),
         HttpModule,
-        ToastModule
+        ToastModule.forRoot(options)
+    ],
+    exports: [
+        TranslateModule
     ],
     declarations: [
         AppComponent,
@@ -51,6 +61,7 @@ import { InvoiceService } from "../app/services/invoice";
         InvoicesComponent
     ],
     providers: [
+        ToastModule,
         { provide: LocationStrategy, useClass: HashLocationStrategy },
         AlertService,
         AttachmentService,

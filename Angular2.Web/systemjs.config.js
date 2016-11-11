@@ -16,6 +16,7 @@
       '@angular/forms': 'npm:@angular/forms/bundles/forms.umd.js',
       'rxjs': 'npm:rxjs',
       'angular-in-memory-web-api': 'npm:angular-in-memory-web-api',
+      'ng2-translate': 'npm:ng2-translate/bundles/index.js',
       'ng2-toastr': 'npm:ng2-toastr'
     },
     packages: {
