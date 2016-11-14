@@ -1,2 +1,18 @@
 
-<router-outlet></router-outlet>
+<div class="row">
+  <div class="col-md-2">
+    <small>
+      <ul class="nav nav-pills nav-stacked">
+        <li role="presentation">
+          <a routerLink="/customers" routerLinkActive="active">Customers</a>
+        </li>
+        <li role="presentation">
+          <a routerLink="/invoices" routerLinkActive="active">Invoices</a>
+        </li>
+      </ul>
+    </small>
+  </div>
+  <div class="col-md-10">
+    <router-outlet></router-outlet>
+  </div>
+</div>

@@ -7,8 +7,14 @@
 </div>
 
 <div *ngIf="customer">
-    {{ "NAME" | translate }}
-    <input type="text" [(ngModel)]="customer.Name" />
-    {{ "ADDRESS" | translate }}
-    <input type="text" [(ngModel)]="customer.Address" />
+    <input type="button" value="New" *ngIf="!customer" (click)="Save()" />
+    
+    <div>
+        {{ "NAME" | translate }}
+        <input type="text" [(ngModel)]="customer.Name" />
+    </div>
+    <div>
+        {{ "ADDRESS" | translate }}
+        <input type="text" [(ngModel)]="customer.Address" />
+    </div>
 </div>
