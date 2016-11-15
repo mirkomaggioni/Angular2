@@ -17,6 +17,7 @@
       'rxjs': 'npm:rxjs',
       'angular-in-memory-web-api': 'npm:angular-in-memory-web-api',
       'ng2-translate': 'npm:ng2-translate/bundles/index.js',
+      'angular2-select': 'npm:angular2-select',
       'ng2-toastr': 'npm:ng2-toastr'
     },
     packages: {
@@ -33,6 +34,10 @@
       },
       'ng2-toastr': {
         main: './ng2-toastr.js',
+        defaultExtension: 'js'
+      },
+      'angular2-select': {
+        main: 'index.js',
         defaultExtension: 'js'
       }
     }

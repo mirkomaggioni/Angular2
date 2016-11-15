@@ -1,20 +1,41 @@
-<input type="button" value="New" *ngIf="!customer" (click)="New()" />
+<input type="button" class="btn btn-primary" value="New" *ngIf="!customer" (click)="New()" />
 
 <div *ngIf="!customer">
-    <div *ngFor="let customer of customers" (click)="Edit(customer)">
-        {{customer.Name}} - {{customer.Address}}
-    </div>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>
+                    {{ "NAME" | translate }}
+                </th>
+                <th>
+                    {{ "ADDRESS" | translate }}
+                </th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr *ngFor="let customer of customers" (click)="Edit(customer)">
+                <td>
+                    {{customer.Name}}
+                </td>
+                <td>
+                    {{customer.Address}}
+                </td>
+            </tr>
+        </tbody>
+    </table>
 </div>
 
-<div *ngIf="customer">
-    <input type="button" value="New" *ngIf="!customer" (click)="Save()" />
-    
-    <div>
-        {{ "NAME" | translate }}
-        <input type="text" [(ngModel)]="customer.Name" />
+<div class="form" *ngIf="customer">
+    <input type="button" class="btn btn-primary" value="Save" (click)="Save()" />
+    <input type="button" class="btn btn-default" value="Close" (click)="Close()" />
+
+    <div class="form-group">
+        <label for="name">{{ "NAME" | translate }}</label>
+        <input type="text" id="name" class="form-control" placeholder="{{customer.Name}}" [(ngModel)]="customer.Name" />
     </div>
-    <div>
-        {{ "ADDRESS" | translate }}
-        <input type="text" [(ngModel)]="customer.Address" />
+    <div class="form-group">
+        <label for="address">{{ "ADDRESS" | translate }}</label>        
+        <input type="text" id="address" class="form-control" placeholder="{{customer.Name}}" [(ngModel)]="customer.Address" />
     </div>
 </div>

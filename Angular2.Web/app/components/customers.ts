@@ -60,6 +60,10 @@ export class CustomersComponent {
         }
     }
 
+    public Close() {
+        this.customer = null;
+    }
+
     public Delete() {
         this.customerService.Delete(this.customer.Id).subscribe(
             () => {
