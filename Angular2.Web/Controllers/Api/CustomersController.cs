@@ -79,6 +79,11 @@ namespace Angular2.Web.Controllers.Api
                 return BadRequest(ModelState);
             }
 
+            if (customer.Id == Guid.Empty)
+            {
+                customer.Id = Guid.NewGuid();
+            }
+
             _db.Customers.Add(customer);
 
             try

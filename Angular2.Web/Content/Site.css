@@ -15,3 +15,17 @@ select,
 textarea {
     max-width: 280px;
 }
+
+.select2-container {
+    max-width: 280px;
+    border-radius: 4px;
+}
+
+.select2-selection__rendered {
+    line-height: 34px !important;
+}
+
+.select2-selection {
+    border-radius: 4px !important;
+    height: 34px !important;
+}

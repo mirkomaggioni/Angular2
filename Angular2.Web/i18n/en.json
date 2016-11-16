@@ -1,4 +1,10 @@
 {
+    "SAVE": "Save",
+    "CLOSE": "Close",
     "NAME": "Name",
-    "ADDRESS": "Address"
+    "ADDRESS": "Address",
+    "CITY": "City",
+    "CUSTOMERSLOADED": "Customers loaded",
+    "CUSTOMERSAVED": "Customer saved",
+    "CUSTOMERDELETED": "Customer deleted"
 }
