@@ -1,6 +1,6 @@
-<input type="button" class="btn btn-primary" value="New" *ngIf="!customer" (click)="New()" />
+<div [hidden]="edit">
+    <input type="button" class="btn btn-primary" value="New" (click)="New()" />
 
-<div *ngIf="!customer">
     <table class="table table-striped">
         <thead>
             <tr>
@@ -10,6 +10,7 @@
                 <th>
                     {{ "ADDRESS" | translate }}
                 </th>
+                <th>aaa</th>
             </tr>
         </thead>
 
@@ -21,27 +22,12 @@
                 <td>
                     {{customer.Address}}
                 </td>
+                <td>
+                    {{customer.IsDeleted}}                    
+                </td>
             </tr>
         </tbody>
     </table>
 </div>
-
-<form *ngIf="customer" (ngSubmit)="Save(customerForm)" #customerForm="ngForm">
-    <div class="form">
-        <button type="submit" class="btn btn-primary" [disabled]="!customerForm.form.valid">{{ "SAVE" | translate }}</button>
-        <button type="submit" class="btn btn-default" (click)="Close()">{{ "CLOSE" | translate }}</button>
-
-        <div class="form-group">
-            <label for="name">{{ "NAME" | translate }}</label>
-            <input type="text" name="name" class="form-control" placeholder="{{ 'NAME' | translate }}" [(ngModel)]="customer.Name" required />
-        </div>
-        <div class="form-group">
-            <label for="address">{{ "ADDRESS" | translate }}</label>
-            <input type="text" name="address" class="form-control" placeholder="{{ 'ADDRESS' | translate }}" [(ngModel)]="customer.Address" required />
-        </div>
-        <div class="form-group">
-            <label for="address">{{ "CITY" | translate }}</label>
-            <ng-select name="city" [options]="cityOptions" placeholder="{{ 'CITY' | translate }}" [allowClear]="true" [(ngModel)]="customer.IdCity" required></ng-select>
-        </div>
-    </div>
-</form>
+<customers-detail *ngIf="customer" [hidden]="!edit" [customer]="customer" [cityOptions]="cityOptions" 
+    (onClosed)="onClosed($event)" (onDeleted)="onDeleted($event)"></customers-detail>

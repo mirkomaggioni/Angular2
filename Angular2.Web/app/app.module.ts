@@ -18,6 +18,7 @@ import "rxjs/add/operator/toPromise";
 
 import { AppComponent } from "../app/app.component";
 import { CustomersComponent } from "../app/components/customers";
+import { CustomersDetailComponent } from "../app/components/customers.detail";
 import { InvoicesComponent } from "../app/components/invoices";
 import { AlertService } from "../app/services/alert";
 import { AttachmentService } from "../app/services/attachment";
@@ -60,6 +61,7 @@ let options: any = {
     declarations: [
         AppComponent,
         CustomersComponent,
+        CustomersDetailComponent,
         InvoicesComponent
     ],
     providers: [

@@ -11,7 +11,7 @@ export class WebApi<T> {
         this.options = new RequestOptions({ headers: headers });
     }
 
-    public GetAll(): Observable<T[]> {
+    public GetAll(): Observable<T[]> {  
         return this.http.get(this.url, this.options).map(this.extractData).catch(this.handleError);
     };
 
@@ -20,7 +20,7 @@ export class WebApi<T> {
     }
 
     public Put(id: string, entity: T): Observable<boolean> {
-        return this.http.put(this.url + "/" + id, JSON.stringify(entity), this.options).map(this.extractData).catch(this.handleError);        
+        return this.http.put(this.url + "/" + id, JSON.stringify(entity), this.options).map(this.extractResponseStatus).catch(this.handleError);        
     }
 
     public Post(entity: T): Observable<T> {
@@ -28,12 +28,16 @@ export class WebApi<T> {
     }
 
     public Delete(id: string): Observable<boolean> {
-        return this.http.delete(this.url + "/" + id, this.options).map(this.extractData).catch(this.handleError);
+        return this.http.delete(this.url + "/" + id, this.options).map(this.extractResponseStatus).catch(this.handleError);
     }
 
     private extractData(res: Response) {
         let body = res.json();
         return body || {};
+    }
+
+    private extractResponseStatus(res: Response) {
+        return res.ok;
     }
 
     private handleError(error: any) {

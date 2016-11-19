@@ -14,21 +14,20 @@ import { CityService } from "../services/city";
 
 export class CustomersComponent {
     public customers: Customer[];
+    public customer: Customer;
+    public edit = false;
     public cityOptions: SelectOption[];
-
-    public customer;
 
     constructor(public customerService: CustomerService, public alertService: AlertService, public cityService: CityService) {
         this.Load();
+        this.getOptions();
     }
 
     public Load() {
-        this.getOptions();
-
         this.customerService.GetAll().subscribe(
             (data) => {
                 this.customers = data;
-                this.alertService.Success("Customers loaded succesfully");
+                this.alertService.Success("Customers loaded successfully");
             },
             (error) => this.alertService.Error(error));
     }
@@ -43,42 +42,27 @@ export class CustomersComponent {
         };
 
         this.customer = newCustomer;
+        this.edit = true;
     }
 
     public Edit(customer: Customer) {
         this.customer = customer;
+        this.edit = true;
     }
 
-    public Save() {
+    onClosed (customer: Customer) {
         if (this.customer.IsNew) {
-            this.customerService.Post(this.customer).subscribe(
-                (data) => {
-                    this.customer = data;
-                    this.alertService.Success("Customer saved");
-                },
-                (error) => this.alertService.Error(error));
+            this.customer.Id = customer.Id;
+            this.customer.IsNew = false;
+            this.customers.push(this.customer);
         }
-        else {
-            this.customerService.Put(this.customer.Id, this.customer).subscribe(
-                (data) => {
-                    this.customer = data;
-                    this.alertService.Success("Customer saved");
-                },
-                (error) => this.alertService.Error(error));
-        }
+
+        this.edit = false;
     }
 
-    public Close() {
-        this.customer = null;
-    }
-
-    public Delete() {
-        this.customerService.Delete(this.customer.Id).subscribe(
-            () => {
-                this.customers.splice(this.customers.indexOf(this.customer));
-                this.alertService.Success("Customer deleted");
-            },
-            (error) => this.alertService.Error(error));
+    onDeleted (customer: Customer) {
+        this.customers.splice(this.customers.indexOf(this.customer));
+        this.edit = false;
     }
 
     private getOptions() {
