@@ -56,6 +56,9 @@ export class CustomersComponent {
             this.customer.IsNew = false;
             this.customers.push(this.customer);
         }
+        else {
+            this.customer = customer;
+        }
 
         this.edit = false;
     }

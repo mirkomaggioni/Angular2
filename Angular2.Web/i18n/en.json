@@ -5,7 +5,7 @@
     "NAME": "Name",
     "ADDRESS": "Address",
     "CITY": "City",
-    "CUSTOMERSLOADED": "Customers loaded",
+    "CUSTOMERSLOADED": "Customers loaded successfully",
     "CUSTOMERSAVED": "Customer saved",
     "CUSTOMERDELETED": "Customer deleted"
 }
