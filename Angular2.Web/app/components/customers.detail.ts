@@ -12,8 +12,8 @@ import { CityService } from "../services/city";
 })
 
 export class CustomersDetailComponent {
+    @Input() isNew: boolean;
     @Input() cityOptions: SelectOption[];
-    // @Input() customer: Customer;
     @Output() onClosed = new EventEmitter<Customer>();
     @Output() onDeleted = new EventEmitter<Customer>();
     private currentCustomer: Customer;
@@ -32,7 +32,7 @@ export class CustomersDetailComponent {
     constructor(public customerService: CustomerService, public alertService: AlertService, public cityService: CityService) { }
 
     public Save() {
-        if (this.customer.IsNew) {
+        if (this.isNew) {
             this.customerService.Post(this.customer).subscribe(
                 (data) => {
                     this.customer = data;
@@ -69,8 +69,7 @@ export class CustomersDetailComponent {
             Id: customer.Id,
             Name: customer.Name,
             Address: customer.Address,
-            IdCity: customer.IdCity,
-            IsNew: customer.IsNew
+            IdCity: customer.IdCity
         }
     }
 

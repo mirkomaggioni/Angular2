@@ -1,7 +1,7 @@
 <form #customerForm="ngForm">
     <div class="form">
         <button type="submit" class="btn btn-primary" (click)="Save(customerForm)" [disabled]="!customerForm.form.valid">{{ "SAVE" | translate }}</button>
-        <button type="submit" class="btn btn-danger" (click)="Delete()">{{ "DELETE" | translate }}</button>
+        <button type="submit" class="btn btn-danger" (click)="Delete()" *ngIf="!isNew">{{ "DELETE" | translate }}</button>
         <button type="submit" class="btn btn-default" (click)="Close()">{{ "CLOSE" | translate }}</button>
 
         <div class="form-group">

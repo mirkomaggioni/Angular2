@@ -16,6 +16,7 @@ export class CustomersComponent {
     public customers: Customer[];
     public customer: Customer;
     public edit = false;
+    public newCustomer = false;
     public cityOptions: SelectOption[];
 
     constructor(public customerService: CustomerService, public alertService: AlertService, public cityService: CityService) {
@@ -37,33 +38,35 @@ export class CustomersComponent {
             Id: Constants.guidEmpty,
             IdCity: "",
             Name: "",
-            Address: "",
-            IsNew: true
+            Address: ""
         };
 
         this.customer = newCustomer;
+        this.newCustomer = true;
         this.edit = true;
     }
 
     public Edit(customer: Customer) {
         this.customer = customer;
+        this.newCustomer = false;
         this.edit = true;
     }
 
-    onClosed (customer: Customer) {
-        if (this.customer.IsNew) {
-            this.customer.Id = customer.Id;
-            this.customer.IsNew = false;
-            this.customers.push(this.customer);
-        }
-        else {
-            this.customer = customer;
+    onClosed(customer: Customer) {
+        if (this.customer.Id != Constants.guidEmpty) {
+            if (this.newCustomer) {
+                this.customer.Id = customer.Id;
+                this.customers.push(this.customer);
+            }
+            else {
+                this.customer = customer;
+            }
         }
 
         this.edit = false;
     }
 
-    onDeleted (customer: Customer) {
+    onDeleted(customer: Customer) {
         this.customers.splice(this.customers.indexOf(this.customer));
         this.edit = false;
     }
