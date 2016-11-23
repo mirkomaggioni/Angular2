@@ -13,6 +13,7 @@ import { CityService } from "../services/city";
 
 export class CustomersDetailComponent {
     @Input() isNew: boolean;
+    @Input() validationEnabled: boolean;
     @Input() cityOptions: SelectOption[];
     @Output() onClosed = new EventEmitter<Customer>();
     @Output() onDeleted = new EventEmitter<Customer>();

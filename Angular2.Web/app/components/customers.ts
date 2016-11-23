@@ -17,6 +17,7 @@ export class CustomersComponent {
     public customer: Customer;
     public edit = false;
     public newCustomer = false;
+    public customerValidationEnabled = true;
     public cityOptions: SelectOption[];
 
     constructor(public customerService: CustomerService, public alertService: AlertService, public cityService: CityService) {
@@ -43,31 +44,32 @@ export class CustomersComponent {
 
         this.customer = newCustomer;
         this.newCustomer = true;
+        this.customerValidationEnabled = true;
         this.edit = true;
     }
 
     public Edit(customer: Customer) {
         this.customer = customer;
         this.newCustomer = false;
+        this.customerValidationEnabled = true;
         this.edit = true;
     }
 
     onClosed(customer: Customer) {
-        if (this.customer.Id != Constants.guidEmpty) {
+        if (customer.Id != Constants.guidEmpty) {
+            this.customer = customer;
+
             if (this.newCustomer) {
-                this.customer.Id = customer.Id;
                 this.customers.push(this.customer);
-            }
-            else {
-                this.customer = customer;
             }
         }
 
+        this.customerValidationEnabled = false;
         this.edit = false;
     }
 
     onDeleted(customer: Customer) {
-        this.customers.splice(this.customers.indexOf(this.customer));
+        this.customers.splice(this.customers.indexOf(this.customer), 1);
         this.edit = false;
     }
 

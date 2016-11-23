@@ -25,5 +25,5 @@
         </tbody>
     </table>
 </div>
-<customers-detail *ngIf="customer" [hidden]="!edit" [customer]="customer" [isNew]="newCustomer" [cityOptions]="cityOptions" 
-    (onClosed)="onClosed($event)" (onDeleted)="onDeleted($event)"></customers-detail>
+<customers-detail *ngIf="customer" [hidden]="!edit" [customer]="customer" [isNew]="newCustomer" [validationEnabled]="customerValidationEnabled" 
+    [cityOptions]="cityOptions" (onClosed)="onClosed($event)" (onDeleted)="onDeleted($event)"></customers-detail>
