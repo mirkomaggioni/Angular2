@@ -6,6 +6,7 @@ import { SelectOption } from "../models/selectOption";
 import { AlertService } from "../services/alert";
 import { CustomerService } from "../services/customer";
 import { CityService } from "../services/city";
+import { SearchService } from "../services/search";
 
 @Component({
     selector: "customers",
@@ -20,7 +21,7 @@ export class CustomersComponent {
     public customerValidationEnabled = true;
     public cityOptions: SelectOption[];
 
-    constructor(public customerService: CustomerService, public alertService: AlertService, public cityService: CityService) {
+    constructor(public customerService: CustomerService, public alertService: AlertService, public cityService: CityService, public searchService: SearchService) {
         this.Load();
         this.getOptions();
     }

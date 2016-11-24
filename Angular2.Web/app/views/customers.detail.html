@@ -6,13 +6,11 @@
 
         <div class="form-group">
             <label for="name">{{ "NAME" | translate }}</label>
-            <input type="text" name="name" class="form-control" placeholder="{{ 'NAME' | translate }}" [(ngModel)]="customer.Name" [required]="validationEnabled"
-            />
+            <input type="text" name="name" class="form-control" placeholder="{{ 'NAME' | translate }}" [(ngModel)]="customer.Name" [required]="validationEnabled" />
         </div>
         <div class="form-group">
             <label for="address">{{ "ADDRESS" | translate }}</label>
-            <input type="text" name="address" class="form-control" placeholder="{{ 'ADDRESS' | translate }}" [(ngModel)]="customer.Address"
-                [required]="validationEnabled" />
+            <input type="text" name="address" class="form-control" placeholder="{{ 'ADDRESS' | translate }}" [(ngModel)]="customer.Address" [required]="validationEnabled" />
         </div>
         <div class="form-group">
             <label for="address">{{ "CITY" | translate }}</label>

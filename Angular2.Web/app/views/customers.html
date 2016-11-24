@@ -14,7 +14,7 @@
         </thead>
 
         <tbody>
-            <tr *ngFor="let customer of customers" (click)="Edit(customer)">
+            <tr *ngFor="let customer of (customers | searchCustomers: searchService.searchText)" (click)="Edit(customer)">
                 <td>
                     {{customer.Name}}
                 </td>

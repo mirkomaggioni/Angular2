@@ -17,14 +17,17 @@ import "rxjs/add/operator/switchMap";
 import "rxjs/add/operator/toPromise";
 
 import { AppComponent } from "../app/app.component";
+import { HeaderComponent } from "../app/components/header";
 import { CustomersComponent } from "../app/components/customers";
 import { CustomersDetailComponent } from "../app/components/customers.detail";
 import { InvoicesComponent } from "../app/components/invoices";
+import { SearchCustomersPipe } from "../app/pipes/searchCustomers";
 import { AlertService } from "../app/services/alert";
 import { AttachmentService } from "../app/services/attachment";
 import { CityService } from "../app/services/city";
 import { CustomerService } from "../app/services/customer";
 import { InvoiceService } from "../app/services/invoice";
+import { SearchService } from "../app/services/search";
 
 let options: any = {
   autoDismiss: true,
@@ -60,9 +63,11 @@ let options: any = {
     ],
     declarations: [
         AppComponent,
+        HeaderComponent,
         CustomersComponent,
         CustomersDetailComponent,
-        InvoicesComponent
+        InvoicesComponent,
+        SearchCustomersPipe
     ],
     providers: [
         ToastModule,
@@ -71,7 +76,8 @@ let options: any = {
         AttachmentService,
         CityService,
         CustomerService,
-        InvoiceService
+        InvoiceService,
+        SearchService
     ],
     bootstrap: [
         AppComponent
