@@ -21,7 +21,9 @@ import { HeaderComponent } from "../app/components/header";
 import { CustomersComponent } from "../app/components/customers";
 import { CustomersDetailComponent } from "../app/components/customers.detail";
 import { InvoicesComponent } from "../app/components/invoices";
+import { OptionLabelPipe } from "../app/pipes/optionLabel";
 import { SearchCustomersPipe } from "../app/pipes/searchCustomers";
+import { SearchInvoicesPipe } from "../app/pipes/searchInvoices";
 import { AlertService } from "../app/services/alert";
 import { AttachmentService } from "../app/services/attachment";
 import { CityService } from "../app/services/city";
@@ -67,7 +69,9 @@ let options: any = {
         CustomersComponent,
         CustomersDetailComponent,
         InvoicesComponent,
-        SearchCustomersPipe
+        OptionLabelPipe,
+        SearchCustomersPipe,
+        SearchInvoicesPipe
     ],
     providers: [
         ToastModule,

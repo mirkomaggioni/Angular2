@@ -1,3 +1,36 @@
+<div [hidden]="edit">
+    <input type="button" class="btn btn-primary" value="New" (click)="New()" />
 
-INVOICES
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>
+                    {{ "NUMBER" | translate }}
+                </th>
+                <th>
+                    {{ "CUSTOMER" | translate }}
+                </th>
+                <th>
+                    {{ "EMISSIONDATE" | translate }}
+                </th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr *ngFor="let invoice of (invoices | searchInvoices: searchService.searchText)" (click)="Edit(invoice)">
+                <td>
+                    {{invoice.Number}}/{{invoice.Year}}
+                </td>
+                <td>
+                    {{customerOptions | optionLabel: invoice.IdCustomer}}
+                </td>
+                <td>
+                    {{customer.EmissionDate}}
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<!--<invoices-detail *ngIf="invoice" [hidden]="!edit" [invoice]="invoice" [isNew]="newInvoice" [validationEnabled]="invoiceValidationEnabled" 
+    [customerOptions]="customerOptions" (onClosed)="onClosed($event)" (onDeleted)="onDeleted($event)"></invoices-detail>-->
 

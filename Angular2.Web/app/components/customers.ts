@@ -22,6 +22,7 @@ export class CustomersComponent {
     public cityOptions: SelectOption[];
 
     constructor(public customerService: CustomerService, public alertService: AlertService, public cityService: CityService, public searchService: SearchService) {
+        this.searchService.searchText = "";
         this.Load();
         this.getOptions();
     }
@@ -80,7 +81,7 @@ export class CustomersComponent {
         this.cityService.GetAll().subscribe(
             (data: City[]) => {
                 data.forEach(city => {
-                    this.cityOptions.push(new SelectOption(city));
+                    this.cityOptions.push(new SelectOption(city.Name, city.Id));
                 });
             },
             (error) => this.alertService.Error(error));

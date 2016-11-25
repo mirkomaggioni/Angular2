@@ -10,6 +10,9 @@
                 <th>
                     {{ "ADDRESS" | translate }}
                 </th>
+                <th>
+                    {{ "CITY" | translate }}
+                </th>
             </tr>
         </thead>
 
@@ -20,6 +23,9 @@
                 </td>
                 <td>
                     {{customer.Address}}
+                </td>
+                <td>
+                    {{cityOptions | optionLabel: customer.IdCity}}
                 </td>
             </tr>
         </tbody>
