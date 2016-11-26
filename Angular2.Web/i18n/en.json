@@ -14,5 +14,8 @@
     "CUSTOMERSLOADED": "Customers loaded successfully",
     "CUSTOMERSAVED": "Customer saved",
     "CUSTOMERDELETED": "Customer deleted",
-    "SEARCH": "Search"
+    "SEARCH": "Search",
+    "INVOICESLOADED": "Invoices loaded successfully",
+    "INVOICESAVED": "Invoice saved",
+    "INVOICEDELETED": "Invoice deleted"
 }

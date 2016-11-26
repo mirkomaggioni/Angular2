@@ -1,4 +1,4 @@
-import { Component } from "@angular/core";
+import { Component, OnInit } from "@angular/core";
 import { Customer } from "../models/customer";
 import { Invoice } from "../models/invoice";
 import { Constants } from "../commons";
@@ -13,7 +13,7 @@ import { SearchService } from "../services/search";
     templateUrl: "/app/views/invoices.html"
 })
 
-export class InvoicesComponent {
+export class InvoicesComponent implements OnInit {
     public customers: Customer[];
     public invoices: Invoice[];
     public invoice: Invoice;
@@ -22,7 +22,9 @@ export class InvoicesComponent {
     public invoiceValidationEnabled = true;
     public customerOptions: SelectOption[];
 
-    constructor(public invoiceService: InvoiceService, public customerService: CustomerService, public alertService: AlertService, public searchService: SearchService) {
+    constructor(public invoiceService: InvoiceService, public customerService: CustomerService, public alertService: AlertService, public searchService: SearchService) {}
+
+    ngOnInit() {
         this.searchService.searchText = "";
         this.Load();
         this.getCustomers();

@@ -1,4 +1,5 @@
 import { Component, Input, Output, EventEmitter } from "@angular/core";
+import { TranslateService } from "ng2-translate";
 import { Customer } from "../models/customer";
 import { City } from "../models/city";
 import { SelectOption } from "../models/selectOption";
@@ -30,14 +31,16 @@ export class CustomersDetailComponent {
         return this.currentCustomer;
     }
 
-    constructor(public customerService: CustomerService, public alertService: AlertService, public cityService: CityService) { }
+    constructor(public customerService: CustomerService, public alertService: AlertService, public cityService: CityService, public translateService: TranslateService) { }
 
     public Save() {
         if (this.isNew) {
             this.customerService.Post(this.customer).subscribe(
                 (data) => {
                     this.customer = data;
-                    this.alertService.Success("Customer saved");
+                    this.translateService.get("CUSTOMERSAVED").subscribe((res: string) => { 
+                        this.alertService.Success(res);
+                    });
                 },
                 (error) => this.alertService.Error(error));
         }
@@ -45,7 +48,9 @@ export class CustomersDetailComponent {
             this.customerService.Put(this.customer.Id, this.customer).subscribe(
                 (data) => {
                     this.backupCustomer(this.currentCustomer);
-                    this.alertService.Success("Customer saved");
+                    this.translateService.get("CUSTOMERSAVED").subscribe((res: string) => { 
+                        this.alertService.Success(res);
+                    });
                 },
                 (error) => this.alertService.Error(error));
         }
@@ -59,7 +64,9 @@ export class CustomersDetailComponent {
     public Delete() {
         this.customerService.Delete(this.customer.Id).subscribe(
             () => {
-                this.alertService.Success("Customer deleted");
+                this.translateService.get("CUSTOMERDELETED").subscribe((res: string) => { 
+                    this.alertService.Success(res);
+                });
                 this.onDeleted.emit(this.customer);
             },
             (error) => this.alertService.Error(error));

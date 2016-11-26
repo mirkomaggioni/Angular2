@@ -1,4 +1,5 @@
-import { Component } from "@angular/core";
+import { Component, OnInit } from "@angular/core";
+import { TranslateService } from "ng2-translate";
 import { Customer } from "../models/customer";
 import { Constants } from "../commons";
 import { City } from "../models/city";
@@ -13,7 +14,7 @@ import { SearchService } from "../services/search";
     templateUrl: "/app/views/customers.html"
 })
 
-export class CustomersComponent {
+export class CustomersComponent implements OnInit {
     public customers: Customer[];
     public customer: Customer;
     public edit = false;
@@ -21,7 +22,9 @@ export class CustomersComponent {
     public customerValidationEnabled = true;
     public cityOptions: SelectOption[];
 
-    constructor(public customerService: CustomerService, public alertService: AlertService, public cityService: CityService, public searchService: SearchService) {
+    constructor(public customerService: CustomerService, public alertService: AlertService, public cityService: CityService, public searchService: SearchService, public translateService: TranslateService) {}
+
+    ngOnInit() {
         this.searchService.searchText = "";
         this.Load();
         this.getOptions();
@@ -31,7 +34,9 @@ export class CustomersComponent {
         this.customerService.GetAll().subscribe(
             (data) => {
                 this.customers = data;
-                this.alertService.Success("Customers loaded successfully");
+                this.translateService.get("CUSTOMERSLOADED").subscribe((res: string) => { 
+                    this.alertService.Success(res);
+                });
             },
             (error) => this.alertService.Error(error));
     }
