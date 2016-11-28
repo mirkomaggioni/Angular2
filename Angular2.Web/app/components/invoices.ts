@@ -20,7 +20,7 @@ export class InvoicesComponent implements OnInit {
     public edit = false;
     public newInvoice = false;
     public invoiceValidationEnabled = true;
-    public customerOptions: SelectOption[];
+    public invoiceOptions: SelectOption[];
 
     constructor(public invoiceService: InvoiceService, public customerService: CustomerService, public alertService: AlertService, public searchService: SearchService) {}
 
@@ -44,11 +44,8 @@ export class InvoicesComponent implements OnInit {
             Id: Constants.guidEmpty,
             IdAttachment: Constants.guidEmpty,
             IdCustomer: Constants.guidEmpty,
-            Number: 0,
-            Year: 0,
             EmissionDate: new Date(),
-            DueDate: new Date(),
-            PaymentDate: new Date()
+            DueDate: new Date()
         };
 
         this.invoice = newInvoice;
@@ -83,12 +80,12 @@ export class InvoicesComponent implements OnInit {
     }
 
     private getCustomers() {
-        this.customerOptions = new Array<SelectOption>();
+        this.invoiceOptions = new Array<SelectOption>();
 
         this.customerService.GetAll().subscribe(
             (data: Customer[]) => {
                 data.forEach(customer => {
-                    this.customerOptions.push(new SelectOption(customer.Name, customer.Id));
+                    this.invoiceOptions.push(new SelectOption(customer.Name, customer.Id));
                 });
             },
             (error) => this.alertService.Error(error));

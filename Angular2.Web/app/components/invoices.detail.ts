@@ -10,10 +10,10 @@ import { InvoiceService } from "../services/invoice";
     templateUrl: "/app/views/invoices.detail.html"
 })
 
-export class InvoicesDetailCumponent {
+export class InvoicesDetailComponent {
     @Input() isNew: boolean;
     @Input() validationEnabled: boolean;
-    @Input() customerOptions: SelectOption[];
+    @Input() invoiceOptions: SelectOption[];
     @Output() onClosed = new EventEmitter<Invoice>();
     @Output() onDeleted = new EventEmitter<Invoice>();
     private currentInvoice: Invoice;

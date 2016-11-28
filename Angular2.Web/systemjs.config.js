@@ -18,7 +18,9 @@
       'angular-in-memory-web-api': 'npm:angular-in-memory-web-api',
       'ng2-translate': 'npm:ng2-translate/bundles/index.js',
       'angular2-select': 'npm:angular2-select',
-      'ng2-toastr': 'npm:ng2-toastr'
+      'ng2-toastr': 'npm:ng2-toastr',
+      'moment': "npm:moment",
+      '@ng-bootstrap/ng-bootstrap': 'npm:@ng-bootstrap/ng-bootstrap/bundles/ng-bootstrap.js',
     },
     packages: {
       app: {
@@ -38,6 +40,10 @@
       },
       'angular2-select': {
         main: 'index.js',
+        defaultExtension: 'js'
+      },
+      'moment': {
+        main: 'moment.js',
         defaultExtension: 'js'
       }
     }

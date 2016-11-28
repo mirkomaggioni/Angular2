@@ -7,6 +7,7 @@ import { BrowserModule } from "@angular/platform-browser";
 import { TranslateModule } from "ng2-translate";
 import { ToastModule, ToastOptions } from "ng2-toastr/ng2-toastr";
 import { SelectModule } from "angular2-select";
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 import "rxjs/add/observable/throw";
 import "rxjs/add/operator/catch";
@@ -21,6 +22,8 @@ import { HeaderComponent } from "../app/components/header";
 import { CustomersComponent } from "../app/components/customers";
 import { CustomersDetailComponent } from "../app/components/customers.detail";
 import { InvoicesComponent } from "../app/components/invoices";
+import { InvoicesDetailComponent } from "../app/components/invoices.detail";
+import { DatePickerComponent } from "../app/components/datePicker";
 import { OptionLabelPipe } from "../app/pipes/optionLabel";
 import { SearchCustomersPipe } from "../app/pipes/searchCustomers";
 import { SearchInvoicesPipe } from "../app/pipes/searchInvoices";
@@ -58,7 +61,8 @@ let options: any = {
         TranslateModule.forRoot(),
         HttpModule,
         ToastModule.forRoot(options),
-        SelectModule
+        SelectModule,
+        NgbModule.forRoot()
     ],
     exports: [
         TranslateModule
@@ -69,6 +73,8 @@ let options: any = {
         CustomersComponent,
         CustomersDetailComponent,
         InvoicesComponent,
+        InvoicesDetailComponent,
+        DatePickerComponent,
         OptionLabelPipe,
         SearchCustomersPipe,
         SearchInvoicesPipe

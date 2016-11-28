@@ -1,0 +1,33 @@
+<form #invoiceForm="ngForm">
+    <div class="form">
+        <button type="submit" class="btn btn-primary" (click)="Save(invoiceForm)" [disabled]="!invoiceForm.form.valid">{{ "SAVE" | translate }}</button>
+        <button type="submit" class="btn btn-danger" (click)="Delete()" *ngIf="!isNew">{{ "DELETE" | translate }}</button>
+        <button type="submit" class="btn btn-default" (click)="Close()">{{ "CLOSE" | translate }}</button>
+
+        <!--<div class="form-group">
+            <label for="customer">{{ "CUSTOMER" | translate }}</label>
+            <ng-select name="customer" [options]="customerOptions" placeholder="{{ 'CUSTOMER' | translate }}" [allowClear]="true" [(ngModel)]="invoice.IdCustomer" [required]="validationEnabled"></ng-select>
+        </div>-->
+        <div class="form-group">
+            <label for="number">{{ "NUMBER" | translate }}</label>
+            <input type="text" name="NUMBER" class="form-control" placeholder="{{ 'NUMBER' | translate }}" [(ngModel)]="invoice.Number" [required]="validationEnabled" />
+        </div>
+        <div class="form-group">
+            <label for="year">{{ "YEAR" | translate }}</label>
+            <input type="text" name="address" class="form-control" placeholder="{{ 'YEAR' | translate }}" [(ngModel)]="invoice.Year" [required]="validationEnabled" />
+        </div>
+        <div class="form-group">
+            <label for="emissionDate">{{ "EMISSIONDATE" | translate }}</label>
+            <date-picker placeholder="EMISSIONDATE" name="emissionDate" [value]="invoice.EmissionDate" [validationEnabled]="validationEnabled"></date-picker>
+        </div>
+        
+        <div class="form-group">
+            <label for="dueDate">{{ "DUEDATE" | translate }}</label>
+            <date-picker placeholder="DUEDATE" name="dueDate" [value]="invoice.DueDate" [validationEnabled]="validationEnabled"></date-picker>        
+        </div>
+        <div class="form-group">
+            <label for="paymentDate">{{ "PAYMENTDATE" | translate }}</label>
+            <date-picker placeholder="PAYMENTDATE" name="paymentDate" [value]="invoice.PaymentDate" [validationEnabled]="validationEnabled"></date-picker>
+        </div>
+    </div>
+</form>
