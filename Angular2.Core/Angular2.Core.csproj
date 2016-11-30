@@ -58,10 +58,19 @@
     <Compile Include="DataLayer\Context.cs" />
     <Compile Include="DataLayer\Customer.cs" />
     <Compile Include="DataLayer\District.cs" />
+    <Compile Include="DataLayer\FileBlob.cs" />
     <Compile Include="DataLayer\Invoice.cs" />
     <Compile Include="Migrations\201611090532057_AddingTables.cs" />
     <Compile Include="Migrations\201611090532057_AddingTables.Designer.cs">
       <DependentUpon>201611090532057_AddingTables.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201611300642274_AddingFileBlobTable.cs" />
+    <Compile Include="Migrations\201611300642274_AddingFileBlobTable.Designer.cs">
+      <DependentUpon>201611300642274_AddingFileBlobTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201611301711281_RemovingAttachmentFilePath.cs" />
+    <Compile Include="Migrations\201611301711281_RemovingAttachmentFilePath.Designer.cs">
+      <DependentUpon>201611301711281_RemovingAttachmentFilePath.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -73,6 +82,12 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201611090532057_AddingTables.resx">
       <DependentUpon>201611090532057_AddingTables.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201611300642274_AddingFileBlobTable.resx">
+      <DependentUpon>201611300642274_AddingFileBlobTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201611301711281_RemovingAttachmentFilePath.resx">
+      <DependentUpon>201611301711281_RemovingAttachmentFilePath.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -13,5 +13,6 @@ namespace Angular2.Core.DataLayer
         public DbSet<Attachment> Attachments { get; set; }
         public DbSet<Customer> Customers { get; set; }
         public DbSet<Invoice> Invoices { get; set; }
+        public DbSet<FileBlob> FileBlobs { get; set; }
     }
 }

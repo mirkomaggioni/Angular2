@@ -9,8 +9,10 @@ namespace Angular2.Core.DataLayer
     public class Attachment
     {
         public Guid Id { get; set; }
+        public Guid? IdFileBlob { get; set; }
+        [ForeignKey("IdFileBlob")]
+        public virtual FileBlob FileBlob { get; set; }
         public string Name { get; set; }
-        public string Path { get; set; }
         public double Size { get; set; }
     }
 }
