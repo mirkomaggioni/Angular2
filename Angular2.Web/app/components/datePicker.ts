@@ -1,4 +1,4 @@
-import { Component, Input, Output } from "@angular/core";
+import { Component, Input } from "@angular/core";
 import * as moment from "moment";
 
 @Component({
@@ -7,7 +7,7 @@ import * as moment from "moment";
 })
 
 export class DatePickerComponent {
-    currentDate: string;
+    currentDate: string = "";
     @Input() placeholder: string;
     @Input() name: string;
     @Input() validationEnabled: boolean;

@@ -1,8 +1,10 @@
 import { Component, Input, Output, EventEmitter } from "@angular/core";
 import { TranslateService } from "ng2-translate";
+import { Attachment } from "../models/attachment";
 import { Invoice } from "../models/invoice";
 import { SelectOption } from "../models/selectOption";
 import { AlertService } from "../services/alert";
+import { AttachmentService } from "../services/attachment";
 import { InvoiceService } from "../services/invoice";
 
 @Component({
@@ -12,10 +14,11 @@ import { InvoiceService } from "../services/invoice";
 
 export class InvoicesDetailComponent {
     @Input() isNew: boolean;
-    @Input() validationEnabled: boolean;
-    @Input() invoiceOptions: SelectOption[];
+    @Input() required: boolean;
+    @Input() customerOptions: SelectOption[];
     @Output() onClosed = new EventEmitter<Invoice>();
     @Output() onDeleted = new EventEmitter<Invoice>();
+    public attachment: Attachment;
     private currentInvoice: Invoice;
     private originalInvoice: Invoice;
 
@@ -23,13 +26,21 @@ export class InvoicesDetailComponent {
     set invoice (invoice: Invoice) {
         this.currentInvoice = invoice;
         this.backupInvoice(this.currentInvoice);
+
+        if (this.invoice.IdAttachment != "") {
+            this.attachmentService.Get(this.invoice.IdAttachment).subscribe(
+                (res: Attachment) => { 
+                    this.attachment = res;
+                },
+                (error) => this.alertService.Error(error));
+        }
     }
 
     get invoice () { 
         return this.currentInvoice;
     }
 
-    constructor(public invoiceService: InvoiceService, public alertService: AlertService, public translateService: TranslateService) { }
+    constructor(public invoiceService: InvoiceService, public attachmentService: AttachmentService, public alertService: AlertService, public translateService: TranslateService) { }
 
     public Save() {
         if (this.isNew) {

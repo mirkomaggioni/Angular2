@@ -32,5 +32,5 @@
     </table>
 </div>
 <invoices-detail *ngIf="invoice" [hidden]="!edit" [invoice]="invoice" [isNew]="newInvoice" [validationEnabled]="invoiceValidationEnabled" 
-    [invoiceOptions]="invoiceOptions" (onClosed)="onClosed($event)" (onDeleted)="onDeleted($event)"></invoices-detail>
+    [customerOptions]="customerOptions" (onClosed)="onClosed($event)" (onDeleted)="onDeleted($event)"></invoices-detail>
 

@@ -33,6 +33,7 @@ import { CityService } from "../app/services/city";
 import { CustomerService } from "../app/services/customer";
 import { InvoiceService } from "../app/services/invoice";
 import { SearchService } from "../app/services/search";
+import { NgbDateMomentParserFormatter } from "../app/services/ngbDateMomentParserFormatter"
 
 let options: any = {
   autoDismiss: true,
@@ -87,7 +88,8 @@ let options: any = {
         CityService,
         CustomerService,
         InvoiceService,
-        SearchService
+        SearchService,
+        { provide: NgbDateMomentParserFormatter, useFactory: () => { return new NgbDateMomentParserFormatter("DD-MM-YYYY") } }
     ],
     bootstrap: [
         AppComponent

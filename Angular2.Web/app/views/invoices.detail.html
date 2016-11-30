@@ -4,10 +4,10 @@
         <button type="submit" class="btn btn-danger" (click)="Delete()" *ngIf="!isNew">{{ "DELETE" | translate }}</button>
         <button type="submit" class="btn btn-default" (click)="Close()">{{ "CLOSE" | translate }}</button>
 
-        <!--<div class="form-group">
+        <div class="form-group">
             <label for="customer">{{ "CUSTOMER" | translate }}</label>
             <ng-select name="customer" [options]="customerOptions" placeholder="{{ 'CUSTOMER' | translate }}" [allowClear]="true" [(ngModel)]="invoice.IdCustomer" [required]="validationEnabled"></ng-select>
-        </div>-->
+        </div>
         <div class="form-group">
             <label for="number">{{ "NUMBER" | translate }}</label>
             <input type="text" name="NUMBER" class="form-control" placeholder="{{ 'NUMBER' | translate }}" [(ngModel)]="invoice.Number" [required]="validationEnabled" />
@@ -28,6 +28,10 @@
         <div class="form-group">
             <label for="paymentDate">{{ "PAYMENTDATE" | translate }}</label>
             <date-picker placeholder="PAYMENTDATE" name="paymentDate" [value]="invoice.PaymentDate" [validationEnabled]="validationEnabled"></date-picker>
+        </div>
+        <div class="form-group">
+            <label for="attachment">{{ "ATTACHMENT" | translate }}</label>
+            <attachments placeholder="ATTACHMENT" name="attachment" [attachment]="attachment" [validationEnabled]="validationEnabled"></date-picker>
         </div>
     </div>
 </form>

@@ -152,6 +152,7 @@
     <Compile Include="Controllers\Api\AttachmentsController.cs" />
     <Compile Include="Controllers\Api\CitiesController.cs" />
     <Compile Include="Controllers\Api\CustomersController.cs" />
+    <Compile Include="Controllers\Api\FileBlobsController.cs" />
     <Compile Include="Controllers\Api\InvoicesController.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
