@@ -24,6 +24,7 @@ import { CustomersDetailComponent } from "../app/components/customers.detail";
 import { InvoicesComponent } from "../app/components/invoices";
 import { InvoicesDetailComponent } from "../app/components/invoices.detail";
 import { DatePickerComponent } from "../app/components/datePicker";
+import { AttachmentComponent } from "../app/components/attachment";
 import { OptionLabelPipe } from "../app/pipes/optionLabel";
 import { SearchCustomersPipe } from "../app/pipes/searchCustomers";
 import { SearchInvoicesPipe } from "../app/pipes/searchInvoices";
@@ -33,6 +34,7 @@ import { CityService } from "../app/services/city";
 import { CustomerService } from "../app/services/customer";
 import { InvoiceService } from "../app/services/invoice";
 import { SearchService } from "../app/services/search";
+import { FileBlobService } from "../app/services/fileBlob";
 import { NgbDateMomentParserFormatter } from "../app/services/ngbDateMomentParserFormatter"
 
 let options: any = {
@@ -76,6 +78,7 @@ let options: any = {
         InvoicesComponent,
         InvoicesDetailComponent,
         DatePickerComponent,
+        AttachmentComponent,
         OptionLabelPipe,
         SearchCustomersPipe,
         SearchInvoicesPipe
@@ -89,6 +92,7 @@ let options: any = {
         CustomerService,
         InvoiceService,
         SearchService,
+        FileBlobService,
         { provide: NgbDateMomentParserFormatter, useFactory: () => { return new NgbDateMomentParserFormatter("DD-MM-YYYY") } }
     ],
     bootstrap: [

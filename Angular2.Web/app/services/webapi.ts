@@ -31,19 +31,19 @@ export class WebApi<T> {
         return this.http.delete(this.url + "/" + id, this.options).map(this.extractResponseStatus).catch(this.handleError);
     }
 
-    private extractData(res: Response) {
+    protected extractData(res: Response) {
         let body = res.json();
         return body || {};
     }
 
-    private extractResponseStatus(res: Response) {
-        return res.ok;
-    }
-
-    private handleError(error: any) {
+    protected handleError(error: any) {
         let errMsg = (error.message) ? error.message :
             error.status ? `${error.status} - ${error.statusText}` : 'Server error';
         console.error(errMsg); // log to console instead
         return Observable.throw(errMsg);
+    }
+
+    private extractResponseStatus(res: Response) {
+        return res.ok;
     }
 }

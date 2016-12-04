@@ -14,7 +14,7 @@ import { InvoiceService } from "../services/invoice";
 
 export class InvoicesDetailComponent {
     @Input() isNew: boolean;
-    @Input() required: boolean;
+    @Input() validationEnabled: boolean;
     @Input() customerOptions: SelectOption[];
     @Output() onClosed = new EventEmitter<Invoice>();
     @Output() onDeleted = new EventEmitter<Invoice>();
