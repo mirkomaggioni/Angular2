@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.Entity.Infrastructure;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
@@ -14,6 +15,18 @@ namespace Angular2.Web.Controllers.Api
     public class FileBlobsController : ApiController
     {
         private readonly Context _db = new Context();
+
+        [HttpGet]
+        public async Task<HttpResponseMessage> GetFileBlob(Guid id)
+        {
+            var fileBlob = await _db.FileBlobs.FindAsync(id);
+            var result = Request.CreateResponse(HttpStatusCode.OK);
+            result.Content = new StreamContent(new MemoryStream(fileBlob.File));
+            result.Content.Headers.ContentDisposition = new System.Net.Http.Headers.ContentDispositionHeaderValue("attachment");
+            result.Content.Headers.ContentDisposition.FileName = fileBlob.Name;
+
+            return result;
+        }
 
         [ResponseType(typeof(Guid))]
         public async Task<IHttpActionResult> PostFileBlob()

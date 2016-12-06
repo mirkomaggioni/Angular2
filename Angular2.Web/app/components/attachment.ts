@@ -1,7 +1,6 @@
-import { Component, Input, ElementRef } from "@angular/core";
+import { Component, Input } from "@angular/core";
 import { Constants } from "../commons";
 import { Attachment } from "../models/attachment";
-import { AttachmentService } from "../services/attachment";
 import { FileBlobService } from "../services/fileBlob";
 import { AlertService } from "../services/alert";
 
@@ -15,15 +14,19 @@ export class AttachmentComponent {
     @Input() name: string;
     @Input() validationEnabled: boolean;
     @Input() attachment: Attachment;
-    public fileBlob: FileList;
+    public fileBlob: File;
 
-    constructor (public elementRef: ElementRef, public attachmentService: AttachmentService, public fileBlobService: FileBlobService, public alertService: AlertService) {}
+    constructor (public fileBlobService: FileBlobService, public alertService: AlertService) {}
+
+    public LoadAttachment() {
+        this.fileBlobService.DownloadFile(this.attachment.IdFileBlob);
+    }
 
     public AddAttachment(event) {
         let attachments = event.target.files;
         if (attachments.length > 0) {
             let file:File = attachments[0];
-            this.fileBlobService.Post(file).subscribe(
+            this.fileBlobService.PostFile(file).subscribe(
                 (res) => {
                     this.attachment = {
                         Id: Constants.guidEmpty,

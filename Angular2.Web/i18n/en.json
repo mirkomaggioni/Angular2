@@ -5,6 +5,7 @@
     "NAME": "Name",
     "ADDRESS": "Address",
     "ATTACHMENT": "Attachment",
+    "ATTACHINVOICE": "Attach invoice",
     "CITY": "City",
     "NUMBER": "Number",
     "YEAR": "Year",

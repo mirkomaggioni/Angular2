@@ -3,7 +3,7 @@ import { Observable } from "rxjs/Observable";
 
 export class WebApi<T> {
     protected url: string;
-    private options: RequestOptions;
+    protected options: RequestOptions;
 
     constructor(url: string, public http: Http) {
         this.url = url;

@@ -1,5 +1,7 @@
 
 <div *ngIf="!attachment">
-    <i class="fa fa-paperclip"></i> Attach invoice<input type="file" [(ngModel)]="fileBlob" (change)="AddAttachment($event)" [required]="validationEnabled" />    
+    <i class="fa fa-paperclip"></i> {{ "ATTACHINVOICE" | translate }}<input type="file" [(ngModel)]="fileBlob" (change)="AddAttachment($event)" [required]="validationEnabled" />    
 </div>
-<span *ngIf="attachment">{{attachment.Name}}</span>
+<div *ngIf="attachment">
+    <span *ngIf="attachment" (click)="LoadAttachment()">{{attachment.Name}}</span>
+</div>
