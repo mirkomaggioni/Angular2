@@ -3,5 +3,6 @@
     <i class="fa fa-paperclip"></i> {{ "ATTACHINVOICE" | translate }}<input type="file" [(ngModel)]="fileBlob" (change)="AddAttachment($event)" [required]="validationEnabled" />    
 </div>
 <div *ngIf="attachment">
-    <span *ngIf="attachment" (click)="LoadAttachment()">{{attachment.Name}}</span>
+    <span *ngIf="attachment" (click)="DownloadAttachment()">{{attachment.Name}}</span>
+    <input type="button" value="Delete" (click)="DeleteAttachment()" />
 </div>

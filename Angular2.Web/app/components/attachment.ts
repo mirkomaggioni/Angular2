@@ -1,6 +1,7 @@
 import { Component, Input } from "@angular/core";
 import { Constants } from "../commons";
 import { Attachment } from "../models/attachment";
+import { AttachmentService } from "../services/attachment";
 import { FileBlobService } from "../services/fileBlob";
 import { AlertService } from "../services/alert";
 
@@ -16,9 +17,9 @@ export class AttachmentComponent {
     @Input() attachment: Attachment;
     public fileBlob: File;
 
-    constructor (public fileBlobService: FileBlobService, public alertService: AlertService) {}
+    constructor (public attachmentService: AttachmentService, public fileBlobService: FileBlobService, public alertService: AlertService) {}
 
-    public LoadAttachment() {
+    public DownloadAttachment() {
         this.fileBlobService.DownloadFile(this.attachment.IdFileBlob);
     }
 
@@ -37,5 +38,22 @@ export class AttachmentComponent {
                 },
                 (error) => this.alertService.Error(error));
         }
+    }
+
+    public DeleteAttachment() {
+        this.fileBlobService.Delete(this.attachment.IdFileBlob).subscribe(
+            (res) => {
+                if (this.attachment.Id == Constants.guidEmpty) {
+                    this.attachment = null;                    
+                }
+                else {
+                    this.attachmentService.Delete(this.attachment.Id).subscribe(
+                        (res) => {
+                            this.attachment = null;                                        
+                        },
+                        (error) => this.alertService.Error(error))
+                }
+            },
+            (error) => this.alertService.Error(error));
     }
 }
