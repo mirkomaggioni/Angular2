@@ -53,20 +53,5 @@ namespace Angular2.Web.Controllers.Api
 
             return Ok(fileBlob.Id);
         }
-
-        [ResponseType(typeof(FileBlob))]
-        public IHttpActionResult DeleteFileBlob(Guid id)
-        {
-            FileBlob fileBlob = _db.FileBlobs.Find(id);
-            if (fileBlob == null)
-            {
-                return NotFound();
-            }
-
-            _db.FileBlobs.Remove(fileBlob);
-            _db.SaveChanges();
-
-            return Ok(fileBlob);
-        }
     }
 }

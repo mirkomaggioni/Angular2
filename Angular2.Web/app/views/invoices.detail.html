@@ -1,6 +1,6 @@
 <form #invoiceForm="ngForm">
     <div class="form">
-        <button type="submit" class="btn btn-primary" (click)="Save(invoiceForm)" [disabled]="!invoiceForm.form.valid">{{ "SAVE" | translate }}</button>
+        <button type="submit" class="btn btn-primary" (click)="Save(invoiceForm)" [disabled]="!invoiceForm.form.valid || attachment == null">{{ "SAVE" | translate }}</button>
         <button type="submit" class="btn btn-danger" (click)="Delete()" *ngIf="!isNew">{{ "DELETE" | translate }}</button>
         <button type="submit" class="btn btn-default" (click)="Close()">{{ "CLOSE" | translate }}</button>
 
@@ -31,7 +31,7 @@
         </div>
         <div class="form-group">
             <label for="attachment">{{ "ATTACHMENT" | translate }}</label>
-            <attachment placeholder="ATTACHMENT" name="attachment" [attachment]="attachment" [validationEnabled]="validationEnabled"></attachment>
+            <attachment placeholder="ATTACHMENT" name="attachment" [attachment]="attachment" (onSaved)="onAttachmentSaved($event)" [validationEnabled]="validationEnabled"></attachment>
         </div>
     </div>
 </form>

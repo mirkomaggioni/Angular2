@@ -1,4 +1,5 @@
 import { Component, OnInit } from "@angular/core";
+import { TranslateService } from "ng2-translate";
 import { Customer } from "../models/customer";
 import { Invoice } from "../models/invoice";
 import { Constants } from "../commons";
@@ -22,7 +23,7 @@ export class InvoicesComponent implements OnInit {
     public invoiceValidationEnabled = true;
     public customerOptions: SelectOption[];
 
-    constructor(public invoiceService: InvoiceService, public customerService: CustomerService, public alertService: AlertService, public searchService: SearchService) {}
+    constructor(public invoiceService: InvoiceService, public customerService: CustomerService, public alertService: AlertService, public searchService: SearchService, public translateService: TranslateService) { }
 
     ngOnInit() {
         this.searchService.searchText = "";
@@ -34,7 +35,10 @@ export class InvoicesComponent implements OnInit {
         this.invoiceService.GetAll().subscribe(
             (data) => {
                 this.invoices = data;
-                this.alertService.Success("Invoices loaded successfully");
+
+                this.translateService.get("INVOICESLOADED").subscribe((res: string) => {
+                    this.alertService.Success(res);
+                });
             },
             (error) => this.alertService.Error(error));
     }
@@ -44,6 +48,7 @@ export class InvoicesComponent implements OnInit {
             Id: Constants.guidEmpty,
             IdAttachment: "",
             IdCustomer: "",
+            Year: (new Date()).getFullYear(),
             EmissionDate: new Date(),
             DueDate: new Date()
         };

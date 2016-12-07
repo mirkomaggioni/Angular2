@@ -79,6 +79,11 @@ namespace Angular2.Web.Controllers.Api
                 return BadRequest(ModelState);
             }
 
+            if (attachment.Id == Guid.Empty)
+            {
+                attachment.Id = Guid.NewGuid();
+            }
+
             _db.Attachments.Add(attachment);
 
             try

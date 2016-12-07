@@ -79,6 +79,11 @@ namespace Angular2.Web.Controllers.Api
                 return BadRequest(ModelState);
             }
 
+            if (invoice.Id == Guid.Empty)
+            {
+                invoice.Id = Guid.NewGuid();
+            }
+
             _db.Invoices.Add(invoice);
 
             try
