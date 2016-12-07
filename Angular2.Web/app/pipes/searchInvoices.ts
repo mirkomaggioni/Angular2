@@ -1,7 +1,10 @@
 import { Pipe, PipeTransform } from "@angular/core";
 import { Invoice } from "../models/invoice";
 
-@Pipe({ name: "searchInvoices" })
+@Pipe({ 
+    name: "searchInvoices",
+    pure: false 
+})
 
 export class SearchInvoicesPipe implements PipeTransform {
     transform(invoices: Invoice[], searchText: string): Invoice[] {

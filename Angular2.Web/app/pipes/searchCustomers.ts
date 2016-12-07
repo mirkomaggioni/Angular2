@@ -1,7 +1,10 @@
 import { Pipe, PipeTransform } from "@angular/core";
 import { Customer } from "../models/customer";
 
-@Pipe({ name: "searchCustomers" })
+@Pipe({ 
+    name: "searchCustomers",
+    pure: false 
+})
 
 export class SearchCustomersPipe implements PipeTransform {
     transform(customers: Customer[], searchText: string): Customer[] {
