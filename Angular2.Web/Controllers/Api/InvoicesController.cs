@@ -19,7 +19,7 @@ namespace Angular2.Web.Controllers.Api
         // GET: api/Invoices
         public IQueryable<Invoice> GetInvoices()
         {
-            return _db.Invoices;
+            return _db.Invoices.Include(i => i.Customer).OrderByDescending(i => i.Year).ThenBy(i => i.Number);
         }
 
         // GET: api/Invoices/5

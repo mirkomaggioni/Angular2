@@ -1,11 +1,12 @@
-import { Component, Input, Output, EventEmitter } from "@angular/core";
+import { Component, Input, Output, EventEmitter, OnInit } from "@angular/core";
 import { Constants } from "../commons";
 import { TranslateService } from "ng2-translate";
 import { Attachment } from "../models/attachment";
+import { Customer } from "../models/customer";
 import { Invoice } from "../models/invoice";
-import { SelectOption } from "../models/selectOption";
 import { AlertService } from "../services/alert";
 import { AttachmentService } from "../services/attachment";
+import { CustomerService } from "../services/customer";
 import { InvoiceService } from "../services/invoice";
 
 @Component({
@@ -16,10 +17,10 @@ import { InvoiceService } from "../services/invoice";
 export class InvoicesDetailComponent {
     @Input() isNew: boolean;
     @Input() validationEnabled: boolean;
-    @Input() customerOptions: SelectOption[];
     @Output() onClosed = new EventEmitter<Invoice>();
     @Output() onDeleted = new EventEmitter<Invoice>();
     public attachment: Attachment;
+    public customers: Customer[];
     private currentInvoice: Invoice;
     private originalInvoice: Invoice;
 
@@ -44,9 +45,15 @@ export class InvoicesDetailComponent {
         return this.currentInvoice;
     }
 
-    constructor(public invoiceService: InvoiceService, public attachmentService: AttachmentService, public alertService: AlertService, public translateService: TranslateService) { }
+    constructor(public attachmentService: AttachmentService, public customerService: CustomerService, public invoiceService: InvoiceService, public alertService: AlertService, public translateService: TranslateService) { }
+
+    ngOnInit() {
+        this.LoadCustomers();
+    }
 
     public Save() {
+        this.invoice.Customer = null;
+
         if (this.isNew) {
 
             this.attachmentService.Post(this.attachment).subscribe(
@@ -115,7 +122,8 @@ export class InvoicesDetailComponent {
             Year: invoice.Year,
             EmissionDate: invoice.EmissionDate,
             DueDate: invoice.DueDate,
-            PaymentDate: invoice.PaymentDate
+            PaymentDate: invoice.PaymentDate,
+            Customer: invoice.Customer
         }
     }
 
@@ -128,6 +136,14 @@ export class InvoicesDetailComponent {
         this.currentInvoice.EmissionDate = this.originalInvoice.EmissionDate;
         this.currentInvoice.DueDate = this.originalInvoice.DueDate;
         this.currentInvoice.PaymentDate = this.originalInvoice.PaymentDate;
+    }
+
+    private LoadCustomers() {
+        this.customerService.GetAll().subscribe(
+            (data: Customer[]) => {
+                this.customers = data;
+            },
+            (error) => this.alertService.Error(error));
     }
 }
 

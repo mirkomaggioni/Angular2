@@ -150,6 +150,7 @@
   <ItemGroup>
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\Api\AttachmentsController.cs" />
+    <Compile Include="Controllers\Api\DistrictsController.cs" />
     <Compile Include="Controllers\Api\CitiesController.cs" />
     <Compile Include="Controllers\Api\CustomersController.cs" />
     <Compile Include="Controllers\Api\FileBlobsController.cs" />

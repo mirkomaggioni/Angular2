@@ -1,4 +1,5 @@
 {
+    "NEW": "New",
     "SAVE": "Save",
     "CLOSE": "Close",
     "DELETE": "Delete",
@@ -7,6 +8,8 @@
     "ATTACHMENT": "Attachment",
     "ATTACHINVOICE": "Attach invoice",
     "CITY": "City",
+    "ZIP": "Zip",
+    "DISTRICT": "District",
     "NUMBER": "Number",
     "YEAR": "Year",
     "CUSTOMER": "Customer",

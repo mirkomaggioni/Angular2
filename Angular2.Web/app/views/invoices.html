@@ -22,7 +22,7 @@
                     {{invoice.Number}}/{{invoice.Year}}
                 </td>
                 <td>
-                    {{customerOptions | optionLabel: invoice.IdCustomer}}
+                    {{invoice.Customer.Name}}
                 </td>
                 <td>
                     {{invoice.EmissionDate | date: "dd/MM/yyyy"}}
@@ -32,5 +32,4 @@
     </table>
 </div>
 <invoices-detail *ngIf="invoice" [hidden]="!edit" [invoice]="invoice" [isNew]="newInvoice" [validationEnabled]="invoiceValidationEnabled" 
-    [customerOptions]="customerOptions" (onClosed)="onClosed($event)" (onDeleted)="onDeleted($event)"></invoices-detail>
-
+    (onClosed)="onClosed($event)" (onDeleted)="onDeleted($event)"></invoices-detail>

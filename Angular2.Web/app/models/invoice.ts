@@ -1,3 +1,4 @@
+import { Customer } from "../models/customer";
 
 export class Invoice {
     Id: string;
@@ -8,4 +9,5 @@ export class Invoice {
     EmissionDate: Date;
     DueDate: Date;
     PaymentDate?: Date;
+    Customer: Customer;
 }

@@ -6,7 +6,9 @@
 
         <div class="form-group">
             <label for="customer">{{ "CUSTOMER" | translate }}</label>
-            <ng-select name="customer" [options]="customerOptions" placeholder="{{ 'CUSTOMER' | translate }}" [allowClear]="true" [(ngModel)]="invoice.IdCustomer" [required]="validationEnabled"></ng-select>
+            <select name="customer" class="form-control" [(ngModel)]="invoice.IdCustomer">
+                <option *ngFor="let c of customers" [ngValue]="c.Id">{{c.Name}}</option>
+            </select>
         </div>
         <div class="form-group">
             <label for="number">{{ "NUMBER" | translate }}</label>
