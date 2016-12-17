@@ -12,44 +12,44 @@ using Angular2.Core.DataLayer;
 
 namespace Angular2.Web.Controllers.Api
 {
-    public class CitiesController : ApiController
+    public class DistrictsController : ApiController
     {
         private readonly Context _db = new Context();
 
-        // GET: api/Cities
-        public IQueryable<City> GetCities()
+        // GET: api/Districts
+        public IQueryable<District> GetDistricts()
         {
-            return _db.Cities.OrderBy(c => c.Name);
+            return _db.Districts.OrderBy(d => d.Name);
         }
 
-        // GET: api/Cities/5
-        [ResponseType(typeof(City))]
-        public IHttpActionResult GetCity(Guid id)
+        // GET: api/Districts/5
+        [ResponseType(typeof(District))]
+        public IHttpActionResult GetDistrict(Guid id)
         {
-            City city = _db.Cities.Find(id);
-            if (city == null)
+            District district = _db.Districts.Find(id);
+            if (district == null)
             {
                 return NotFound();
             }
 
-            return Ok(city);
+            return Ok(district);
         }
 
-        // PUT: api/Cities/5
+        // PUT: api/Districts/5
         [ResponseType(typeof(void))]
-        public IHttpActionResult PutCity(Guid id, City city)
+        public IHttpActionResult PutDistrict(Guid id, District district)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            if (id != city.Id)
+            if (id != district.Id)
             {
                 return BadRequest();
             }
 
-            _db.Entry(city).State = EntityState.Modified;
+            _db.Entry(district).State = EntityState.Modified;
 
             try
             {
@@ -57,7 +57,7 @@ namespace Angular2.Web.Controllers.Api
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!CityExists(id))
+                if (!DistrictExists(id))
                 {
                     return NotFound();
                 }
@@ -70,21 +70,21 @@ namespace Angular2.Web.Controllers.Api
             return StatusCode(HttpStatusCode.NoContent);
         }
 
-        // POST: api/Cities
-        [ResponseType(typeof(City))]
-        public IHttpActionResult PostCity(City city)
+        // POST: api/Districts
+        [ResponseType(typeof(District))]
+        public IHttpActionResult PostDistrict(District district)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            if (city.Id == Guid.Empty)
+            if (district.Id == Guid.Empty)
             {
-                city.Id = Guid.NewGuid();
+                district.Id = Guid.NewGuid();
             }
 
-            _db.Cities.Add(city);
+            _db.Districts.Add(district);
 
             try
             {
@@ -92,7 +92,7 @@ namespace Angular2.Web.Controllers.Api
             }
             catch (DbUpdateException)
             {
-                if (CityExists(city.Id))
+                if (DistrictExists(district.Id))
                 {
                     return Conflict();
                 }
@@ -102,23 +102,23 @@ namespace Angular2.Web.Controllers.Api
                 }
             }
 
-            return CreatedAtRoute("DefaultApi", new { id = city.Id }, city);
+            return CreatedAtRoute("DefaultApi", new { id = district.Id }, district);
         }
 
-        // DELETE: api/Cities/5
-        [ResponseType(typeof(City))]
-        public IHttpActionResult DeleteCity(Guid id)
+        // DELETE: api/Districts/5
+        [ResponseType(typeof(District))]
+        public IHttpActionResult DeleteDistrict(Guid id)
         {
-            City city = _db.Cities.Find(id);
-            if (city == null)
+            District district = _db.Districts.Find(id);
+            if (district == null)
             {
                 return NotFound();
             }
 
-            _db.Cities.Remove(city);
+            _db.Districts.Remove(district);
             _db.SaveChanges();
 
-            return Ok(city);
+            return Ok(district);
         }
 
         protected override void Dispose(bool disposing)
@@ -130,9 +130,9 @@ namespace Angular2.Web.Controllers.Api
             base.Dispose(disposing);
         }
 
-        private bool CityExists(Guid id)
+        private bool DistrictExists(Guid id)
         {
-            return _db.Cities.Count(e => e.Id == id) > 0;
+            return _db.Districts.Count(e => e.Id == id) > 0;
         }
     }
 }

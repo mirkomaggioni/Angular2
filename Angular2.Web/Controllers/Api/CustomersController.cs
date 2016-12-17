@@ -19,14 +19,14 @@ namespace Angular2.Web.Controllers.Api
         // GET: api/Customers
         public IQueryable<Customer> GetCustomers()
         {
-            return _db.Customers;
+            return _db.Customers.Include(c => c.City).OrderBy(c => c.Name);
         }
 
         // GET: api/Customers/5
         [ResponseType(typeof(Customer))]
         public IHttpActionResult GetCustomer(Guid id)
         {
-            Customer customer = _db.Customers.Find(id);
+            var customer = _db.Customers.Find(id);
             if (customer == null)
             {
                 return NotFound();
