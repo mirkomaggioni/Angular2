@@ -1,0 +1,21 @@
+<form #cityForm="ngForm">
+    <div class="form">
+        <button type="submit" class="btn btn-primary" (click)="Save(cityForm)" [disabled]="!cityForm.form.valid">{{ "SAVE" | translate }}</button>
+        <button type="submit" class="btn btn-default" (click)="Close()">{{ "CLOSE" | translate }}</button>
+
+        <div class="form-group">
+            <label for="name">{{ "NAME" | translate }}</label>
+            <input type="text" name="name" class="form-control" placeholder="{{ 'NAME' | translate }}" [(ngModel)]="city.Name" [required]="validationEnabled" />
+        </div>
+        <div class="form-group">
+            <label for="address">{{ "ZIP" | translate }}</label>
+            <input type="text" name="zip" class="form-control" placeholder="{{ 'ZIP' | translate }}" [(ngModel)]="city.Zip" [required]="validationEnabled" />
+        </div>
+        <div class="form-group">
+            <label for="address">{{ "DISTRICT" | translate }}</label>
+            <select name="district" class="form-control" [(ngModel)]="city.IdDistrict" [required]="validationEnabled">
+                <option *ngFor="let d of districts" [ngValue]="d.Id">{{d.Name}}</option>
+            </select>
+        </div>
+    </div>
+</form>

@@ -6,7 +6,6 @@ import { HttpModule } from "@angular/http";
 import { BrowserModule } from "@angular/platform-browser";
 import { TranslateModule } from "ng2-translate";
 import { ToastModule, ToastOptions } from "ng2-toastr/ng2-toastr";
-import { SelectModule } from "angular2-select";
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 import "rxjs/add/observable/throw";
@@ -25,7 +24,8 @@ import { InvoicesComponent } from "../app/components/invoices";
 import { InvoicesDetailComponent } from "../app/components/invoices.detail";
 import { DatePickerComponent } from "../app/components/datePicker";
 import { AttachmentComponent } from "../app/components/attachment";
-import { OptionLabelPipe } from "../app/pipes/optionLabel";
+import { CitiesDetailComponent } from "../app/components/cities.detail";
+import { CityNamePipe } from "../app/pipes/cityName";
 import { SearchCustomersPipe } from "../app/pipes/searchCustomers";
 import { SearchInvoicesPipe } from "../app/pipes/searchInvoices";
 import { AlertService } from "../app/services/alert";
@@ -35,6 +35,7 @@ import { CustomerService } from "../app/services/customer";
 import { InvoiceService } from "../app/services/invoice";
 import { SearchService } from "../app/services/search";
 import { FileBlobService } from "../app/services/fileBlob";
+import { DistrictService } from "../app/services/district";
 import { NgbDateMomentParserFormatter } from "../app/services/ngbDateMomentParserFormatter"
 
 let options: any = {
@@ -64,7 +65,6 @@ let options: any = {
         TranslateModule.forRoot(),
         HttpModule,
         ToastModule.forRoot(options),
-        SelectModule,
         NgbModule.forRoot()
     ],
     exports: [
@@ -79,7 +79,8 @@ let options: any = {
         InvoicesDetailComponent,
         DatePickerComponent,
         AttachmentComponent,
-        OptionLabelPipe,
+        CitiesDetailComponent,
+        CityNamePipe,
         SearchCustomersPipe,
         SearchInvoicesPipe
     ],
@@ -93,6 +94,7 @@ let options: any = {
         InvoiceService,
         SearchService,
         FileBlobService,
+        DistrictService,
         { provide: NgbDateMomentParserFormatter, useFactory: () => { return new NgbDateMomentParserFormatter("DD-MM-YYYY") } }
     ],
     bootstrap: [
