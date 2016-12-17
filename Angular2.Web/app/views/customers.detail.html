@@ -6,15 +6,28 @@
 
         <div class="form-group">
             <label for="name">{{ "NAME" | translate }}</label>
-            <input type="text" name="name" class="form-control" placeholder="{{ 'NAME' | translate }}" [(ngModel)]="customer.Name" [required]="validationEnabled" />
+            <input type="text" name="name" class="form-control" placeholder="{{ 'NAME' | translate }}" [(ngModel)]="customer.Name" [required]="validationEnabled"
+            />
         </div>
         <div class="form-group">
             <label for="address">{{ "ADDRESS" | translate }}</label>
-            <input type="text" name="address" class="form-control" placeholder="{{ 'ADDRESS' | translate }}" [(ngModel)]="customer.Address" [required]="validationEnabled" />
+            <input type="text" name="address" class="form-control" placeholder="{{ 'ADDRESS' | translate }}" [(ngModel)]="customer.Address"
+                [required]="validationEnabled" />
         </div>
         <div class="form-group">
             <label for="address">{{ "CITY" | translate }}</label>
-            <ng-select name="city" [options]="cityOptions" placeholder="{{ 'CITY' | translate }}" [allowClear]="true" [(ngModel)]="customer.IdCity" [required]="validationEnabled"></ng-select>
+            <div class="row">
+                <div class="col-md-3">
+                    <select name="city" class="form-control" [(ngModel)]="customer.IdCity" [required]="validationEnabled">
+                <option *ngFor="let c of cities" [ngValue]="c.Id">{{c.Name}}</option>
+            </select>
+                </div>
+                <div class="col-md-1">
+                    <button type="submit" class="btn btn-default" (click)="AddCity()">{{ "NEW" | translate }}</button>
+                </div>
+            </div>
+            <cities-detail *ngIf="city" [hidden]="!cityValidationEnabled" [city]="city" (onSaved)="onCitySaved($event)" (onClosed)="onCityClosed($event)"
+                [validationEnabled]="cityValidationEnabled"></cities-detail>
         </div>
     </div>
 </form>

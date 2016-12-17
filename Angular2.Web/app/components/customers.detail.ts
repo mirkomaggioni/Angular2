@@ -2,10 +2,9 @@ import { Component, Input, Output, EventEmitter } from "@angular/core";
 import { TranslateService } from "ng2-translate";
 import { Customer } from "../models/customer";
 import { City } from "../models/city";
-import { SelectOption } from "../models/selectOption";
 import { AlertService } from "../services/alert";
 import { CustomerService } from "../services/customer";
-import { CityService } from "../services/city";
+import { Constants } from "../commons";
 
 @Component({
     selector: "customers-detail",
@@ -13,32 +12,38 @@ import { CityService } from "../services/city";
 })
 
 export class CustomersDetailComponent {
+    @Input() cities: City[];    
     @Input() isNew: boolean;
     @Input() validationEnabled: boolean;
-    @Input() cityOptions: SelectOption[];
     @Output() onClosed = new EventEmitter<Customer>();
     @Output() onDeleted = new EventEmitter<Customer>();
+    public city: City;
+    public idCitySelected: string;
+    public cityValidationEnabled = false;
     private currentCustomer: Customer;
     private originalCustomer: Customer;
 
-    @Input() 
-    set customer (customer: Customer) {
+    @Input()
+    set customer(customer: Customer) {
         this.currentCustomer = customer;
         this.backupCustomer(this.currentCustomer);
     }
 
-    get customer () { 
+    get customer() {
         return this.currentCustomer;
     }
 
-    constructor(public customerService: CustomerService, public alertService: AlertService, public cityService: CityService, public translateService: TranslateService) { }
+    constructor(public customerService: CustomerService, public alertService: AlertService, public translateService: TranslateService) { }
 
     public Save() {
+        this.customer.City = null;
+
         if (this.isNew) {
             this.customerService.Post(this.customer).subscribe(
                 (data) => {
                     this.customer = data;
-                    this.translateService.get("CUSTOMERSAVED").subscribe((res: string) => { 
+                    
+                    this.translateService.get("CUSTOMERSAVED").subscribe((res: string) => {
                         this.alertService.Success(res);
                     });
                 },
@@ -48,7 +53,7 @@ export class CustomersDetailComponent {
             this.customerService.Put(this.customer.Id, this.customer).subscribe(
                 (data) => {
                     this.backupCustomer(this.currentCustomer);
-                    this.translateService.get("CUSTOMERSAVED").subscribe((res: string) => { 
+                    this.translateService.get("CUSTOMERSAVED").subscribe((res: string) => {
                         this.alertService.Success(res);
                     });
                 },
@@ -64,7 +69,7 @@ export class CustomersDetailComponent {
     public Delete() {
         this.customerService.Delete(this.customer.Id).subscribe(
             () => {
-                this.translateService.get("CUSTOMERDELETED").subscribe((res: string) => { 
+                this.translateService.get("CUSTOMERDELETED").subscribe((res: string) => {
                     this.alertService.Success(res);
                 });
                 this.onDeleted.emit(this.customer);
@@ -72,18 +77,42 @@ export class CustomersDetailComponent {
             (error) => this.alertService.Error(error));
     }
 
+    public AddCity() {
+        this.city = {
+            Id: Constants.guidEmpty,
+            IdDistrict: "",
+            Name: "",
+            Zip: 0
+        };
+
+        this.cityValidationEnabled = true;
+    }
+
+    onCitySaved(city: City) {
+        this.customer.IdCity = city.Id;
+        this.cityValidationEnabled = false;
+        this.city = city;
+        this.cities.push(city);
+    }
+
+    onCityClosed() {
+        this.cityValidationEnabled = false;
+        this.city = null;
+    }
+
     private backupCustomer(customer: Customer) {
         this.originalCustomer = {
             Id: customer.Id,
+            IdCity: customer.IdCity,
             Name: customer.Name,
             Address: customer.Address,
-            IdCity: customer.IdCity
+            City: customer.City
         }
     }
 
     private restoreCustomer() {
         this.currentCustomer.Name = this.originalCustomer.Name;
         this.currentCustomer.Address = this.originalCustomer.Address;
-        this.currentCustomer.IdCity = this.originalCustomer.IdCity;
+        this.currentCustomer.City = this.originalCustomer.City;
     }
 }

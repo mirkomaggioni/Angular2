@@ -25,11 +25,11 @@
                     {{customer.Address}}
                 </td>
                 <td>
-                    {{cityOptions | optionLabel: customer.IdCity}}
+                    {{cities | cityName: customer.IdCity}}
                 </td>
             </tr>
         </tbody>
     </table>
 </div>
-<customers-detail *ngIf="customer" [hidden]="!edit" [customer]="customer" [isNew]="newCustomer" [validationEnabled]="customerValidationEnabled" 
-    [cityOptions]="cityOptions" (onClosed)="onClosed($event)" (onDeleted)="onDeleted($event)"></customers-detail>
+<customers-detail *ngIf="customer" [hidden]="!edit" [customer]="customer" [cities]="cities" [isNew]="newCustomer" [validationEnabled]="customerValidationEnabled" 
+    (onClosed)="onClosed($event)" (onDeleted)="onDeleted($event)"></customers-detail>

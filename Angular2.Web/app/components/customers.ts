@@ -1,9 +1,8 @@
 import { Component, OnInit } from "@angular/core";
 import { TranslateService } from "ng2-translate";
 import { Customer } from "../models/customer";
-import { Constants } from "../commons";
 import { City } from "../models/city";
-import { SelectOption } from "../models/selectOption";
+import { Constants } from "../commons";
 import { AlertService } from "../services/alert";
 import { CustomerService } from "../services/customer";
 import { CityService } from "../services/city";
@@ -16,25 +15,27 @@ import { SearchService } from "../services/search";
 
 export class CustomersComponent implements OnInit {
     public customers: Customer[];
+    public cities: City[];
     public customer: Customer;
     public edit = false;
     public newCustomer = false;
     public customerValidationEnabled = true;
-    public cityOptions: SelectOption[];
 
-    constructor(public customerService: CustomerService, public alertService: AlertService, public cityService: CityService, public searchService: SearchService, public translateService: TranslateService) {}
+    constructor(public customerService: CustomerService, public cityService: CityService, public alertService: AlertService, public searchService: SearchService, public translateService: TranslateService) { }
 
     ngOnInit() {
         this.searchService.searchText = "";
         this.Load();
-        this.getOptions();
     }
 
     public Load() {
+        this.LoadCities();
+
         this.customerService.GetAll().subscribe(
             (data) => {
                 this.customers = data;
-                this.translateService.get("CUSTOMERSLOADED").subscribe((res: string) => { 
+                this.customer = null;
+                this.translateService.get("CUSTOMERSLOADED").subscribe((res: string) => {
                     this.alertService.Success(res);
                 });
             },
@@ -46,7 +47,8 @@ export class CustomersComponent implements OnInit {
             Id: Constants.guidEmpty,
             IdCity: "",
             Name: "",
-            Address: ""
+            Address: "",
+            City: null
         };
 
         this.customer = newCustomer;
@@ -55,7 +57,7 @@ export class CustomersComponent implements OnInit {
         this.edit = true;
     }
 
-    public Edit(customer: Customer) {
+    public Edit(customer: Customer) { 
         this.customer = customer;
         this.newCustomer = false;
         this.customerValidationEnabled = true;
@@ -63,16 +65,11 @@ export class CustomersComponent implements OnInit {
     }
 
     onClosed(customer: Customer) {
-        if (customer.Id != Constants.guidEmpty) {
-            this.customer = customer;
-
-            if (this.newCustomer) {
-                this.customers.push(this.customer);
-            }
-        }
-
+        this.customer = customer;
         this.customerValidationEnabled = false;
         this.edit = false;
+
+        this.Load();
     }
 
     onDeleted(customer: Customer) {
@@ -80,15 +77,11 @@ export class CustomersComponent implements OnInit {
         this.edit = false;
     }
 
-    private getOptions() {
-        this.cityOptions = new Array<SelectOption>();
-
+    private LoadCities() {
         this.cityService.GetAll().subscribe(
             (data: City[]) => {
-                data.forEach(city => {
-                    this.cityOptions.push(new SelectOption(city.Name, city.Id));
-                });
-            },
-            (error) => this.alertService.Error(error));
+                this.cities = data;
+            }
+        )
     }
 }
