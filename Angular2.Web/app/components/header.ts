@@ -9,7 +9,7 @@ import { SearchService } from "../services/search";
 export class HeaderComponent implements OnInit {
     searchText: string;
 
-    constructor (public searchService: SearchService) {}
+    constructor (private searchService: SearchService) {}
 
     ngOnInit() {
         this.searchService.onResetted.subscribe((searchText: string) => {

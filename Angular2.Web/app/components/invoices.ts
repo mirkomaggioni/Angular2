@@ -18,7 +18,7 @@ export class InvoicesComponent implements OnInit {
     public newInvoice = false;
     public invoiceValidationEnabled = true;
 
-    constructor(public invoiceService: InvoiceService, public alertService: AlertService, public searchService: SearchService, public translateService: TranslateService) { }
+    constructor(private invoiceService: InvoiceService, private alertService: AlertService, private searchService: SearchService, private translateService: TranslateService) { }
 
     ngOnInit() {
         this.searchService.searchText = "";

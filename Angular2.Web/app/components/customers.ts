@@ -21,7 +21,7 @@ export class CustomersComponent implements OnInit {
     public newCustomer = false;
     public customerValidationEnabled = true;
 
-    constructor(public customerService: CustomerService, public cityService: CityService, public alertService: AlertService, public searchService: SearchService, public translateService: TranslateService) { }
+    constructor(private customerService: CustomerService, private cityService: CityService, private alertService: AlertService, private searchService: SearchService, private translateService: TranslateService) { }
 
     ngOnInit() {
         this.searchService.searchText = "";

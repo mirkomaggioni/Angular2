@@ -45,7 +45,7 @@ export class InvoicesDetailComponent {
         return this.currentInvoice;
     }
 
-    constructor(public attachmentService: AttachmentService, public customerService: CustomerService, public invoiceService: InvoiceService, public alertService: AlertService, public translateService: TranslateService) { }
+    constructor(private attachmentService: AttachmentService, private customerService: CustomerService, private invoiceService: InvoiceService, private alertService: AlertService, private translateService: TranslateService) { }
 
     ngOnInit() {
         this.LoadCustomers();

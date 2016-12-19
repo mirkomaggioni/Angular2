@@ -19,7 +19,7 @@ export class CitiesDetailComponent {
     public districts: District[];
     public district: District;
 
-    constructor(public cityService: CityService, public districtService: DistrictService, public alertService: AlertService) { }
+    constructor(private cityService: CityService, private districtService: DistrictService, private alertService: AlertService) { }
 
     ngOnInit() {
         this.LoadDistricts();

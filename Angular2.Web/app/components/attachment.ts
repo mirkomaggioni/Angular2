@@ -17,7 +17,7 @@ export class AttachmentComponent {
     @Output() onSaved = new EventEmitter<Attachment>();
     public fileBlob: File;
 
-    constructor (public fileBlobService: FileBlobService, public alertService: AlertService) {}
+    constructor (private fileBlobService: FileBlobService, private alertService: AlertService) {}
 
     public DownloadAttachment() {
         this.fileBlobService.DownloadFile(this.attachment.IdFileBlob);

@@ -34,7 +34,7 @@ export class CustomersDetailComponent {
         return this.currentCustomer;
     }
 
-    constructor(public customerService: CustomerService, public alertService: AlertService, public translateService: TranslateService) {}
+    constructor(private customerService: CustomerService, private alertService: AlertService, private translateService: TranslateService) {}
 
     public Save() {
         this.customer.City = null;
