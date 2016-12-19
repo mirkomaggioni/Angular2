@@ -6,7 +6,7 @@ import { HttpModule } from "@angular/http";
 import { BrowserModule } from "@angular/platform-browser";
 import { TranslateModule } from "ng2-translate";
 import { ToastModule, ToastOptions } from "ng2-toastr/ng2-toastr";
-import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import { ModalModule } from 'ng2-bootstrap/ng2-bootstrap';
 
 import "rxjs/add/observable/throw";
 import "rxjs/add/operator/catch";
@@ -36,7 +36,6 @@ import { InvoiceService } from "../app/services/invoice";
 import { SearchService } from "../app/services/search";
 import { FileBlobService } from "../app/services/fileBlob";
 import { DistrictService } from "../app/services/district";
-import { NgbDateMomentParserFormatter } from "../app/services/ngbDateMomentParserFormatter"
 
 let options: any = {
   autoDismiss: true,
@@ -65,7 +64,7 @@ let options: any = {
         TranslateModule.forRoot(),
         HttpModule,
         ToastModule.forRoot(options),
-        NgbModule.forRoot()
+        ModalModule.forRoot()
     ],
     exports: [
         TranslateModule
@@ -94,8 +93,7 @@ let options: any = {
         InvoiceService,
         SearchService,
         FileBlobService,
-        DistrictService,
-        { provide: NgbDateMomentParserFormatter, useFactory: () => { return new NgbDateMomentParserFormatter("DD-MM-YYYY") } }
+        DistrictService
     ],
     bootstrap: [
         AppComponent

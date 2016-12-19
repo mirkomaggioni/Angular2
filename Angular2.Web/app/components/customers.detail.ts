@@ -1,5 +1,6 @@
-import { Component, Input, Output, EventEmitter } from "@angular/core";
+import { Component, Input, Output, EventEmitter, ViewChild } from "@angular/core";
 import { TranslateService } from "ng2-translate";
+import { ModalDirective } from 'ng2-bootstrap/ng2-bootstrap';
 import { Customer } from "../models/customer";
 import { City } from "../models/city";
 import { AlertService } from "../services/alert";
@@ -17,6 +18,7 @@ export class CustomersDetailComponent {
     @Input() validationEnabled: boolean;
     @Output() onClosed = new EventEmitter<Customer>();
     @Output() onDeleted = new EventEmitter<Customer>();
+    @ViewChild('citiesModal') public citiesModal: ModalDirective;
     public city: City;
     public idCitySelected: string;
     public cityValidationEnabled = false;
@@ -33,7 +35,7 @@ export class CustomersDetailComponent {
         return this.currentCustomer;
     }
 
-    constructor(public customerService: CustomerService, public alertService: AlertService, public translateService: TranslateService) { }
+    constructor(public customerService: CustomerService, public alertService: AlertService, public translateService: TranslateService) {}
 
     public Save() {
         this.customer.City = null;
@@ -86,6 +88,7 @@ export class CustomersDetailComponent {
         };
 
         this.cityValidationEnabled = true;
+        this.citiesModal.show();
     }
 
     onCitySaved(city: City) {
@@ -93,11 +96,13 @@ export class CustomersDetailComponent {
         this.cityValidationEnabled = false;
         this.city = city;
         this.cities.push(city);
+        this.citiesModal.hide();
     }
 
     onCityClosed() {
         this.cityValidationEnabled = false;
         this.city = null;
+        this.citiesModal.hide();
     }
 
     private backupCustomer(customer: Customer) {

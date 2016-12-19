@@ -1,4 +1,4 @@
-import { Component } from "@angular/core";
+import { Component, ViewContainerRef } from "@angular/core";
 import { TranslateService } from "ng2-translate";
 
 @Component({
@@ -7,8 +7,11 @@ import { TranslateService } from "ng2-translate";
 })
 
 export class AppComponent {
-    constructor (translateService: TranslateService) {
+    private viewContainerRef: ViewContainerRef;
+
+    constructor (translateService: TranslateService, viewContainerRef:ViewContainerRef) {
         translateService.setDefaultLang("en");
         translateService.use("en");
+        this.viewContainerRef = viewContainerRef;
     }
 }
