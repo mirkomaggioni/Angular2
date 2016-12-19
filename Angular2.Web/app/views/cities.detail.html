@@ -7,17 +7,15 @@
             <div class="modal-body">
                 <div class="form-group">
                     <label for="name">{{ "NAME" | translate }}</label>
-                    <input type="text" name="name" class="form-control" placeholder="{{ 'NAME' | translate }}" [(ngModel)]="city.Name" [required]="validationEnabled"
-                    />
+                    <input type="text" name="name" class="form-control" placeholder="{{ 'NAME' | translate }}" [(ngModel)]="city.Name" required />
                 </div>
                 <div class="form-group">
                     <label for="address">{{ "ZIP" | translate }}</label>
-                    <input type="text" name="zip" class="form-control" placeholder="{{ 'ZIP' | translate }}" [(ngModel)]="city.Zip" [required]="validationEnabled"
-                    />
+                    <input type="text" name="zip" class="form-control" placeholder="{{ 'ZIP' | translate }}" [(ngModel)]="city.Zip" required />
                 </div>
                 <div class="form-group">
                     <label for="address">{{ "DISTRICT" | translate }}</label>
-                    <select name="district" class="form-control" [(ngModel)]="city.IdDistrict" [required]="validationEnabled">
+                    <select name="district" class="form-control" [(ngModel)]="city.IdDistrict" required>
                         <option *ngFor="let d of districts" [ngValue]="d.Id">{{d.Name}}</option>
                     </select>
                 </div>

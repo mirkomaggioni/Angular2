@@ -21,7 +21,6 @@ export class CustomersDetailComponent {
     @ViewChild('citiesModal') public citiesModal: ModalDirective;
     public city: City;
     public idCitySelected: string;
-    public cityValidationEnabled = false;
     private currentCustomer: Customer;
     private originalCustomer: Customer;
 
@@ -87,20 +86,17 @@ export class CustomersDetailComponent {
             Zip: 0
         };
 
-        this.cityValidationEnabled = true;
         this.citiesModal.show();
     }
 
     onCitySaved(city: City) {
         this.customer.IdCity = city.Id;
-        this.cityValidationEnabled = false;
         this.city = city;
         this.cities.push(city);
         this.citiesModal.hide();
     }
 
     onCityClosed() {
-        this.cityValidationEnabled = false;
         this.city = null;
         this.citiesModal.hide();
     }

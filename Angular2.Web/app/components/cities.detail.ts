@@ -13,7 +13,6 @@ import { DistrictService } from "../services/district";
 
 export class CitiesDetailComponent {
     @Input() city: City;
-    @Input() validationEnabled: boolean;    
     @Output() onSaved = new EventEmitter<City>();
     @Output() onClosed = new EventEmitter();
     public districts: District[];
