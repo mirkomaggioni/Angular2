@@ -1,5 +1,6 @@
 import { Component, Input, Output, EventEmitter, OnInit } from "@angular/core";
 import { TranslateService } from "ng2-translate";
+import { Constants } from "../commons";
 import { City } from "../models/city";
 import { District } from "../models/district";
 import { AlertService } from "../services/alert";
@@ -16,23 +17,40 @@ export class CitiesDetailComponent {
     @Output() onSaved = new EventEmitter<City>();
     @Output() onClosed = new EventEmitter();
     public districts: District[];
+    public district: District;
 
-    constructor(public cityService: CityService, public districtService: DistrictService, public alertService: AlertService) {}
+    constructor(public cityService: CityService, public districtService: DistrictService, public alertService: AlertService) { }
 
     ngOnInit() {
         this.LoadDistricts();
     }
 
     public Save() {
-        this.cityService.Post(this.city).subscribe(
-            (data) => {
-                this.onSaved.emit(data);
-            },
-            (error) => this.alertService.Error(error));
+        if (this.district != null) {
+            this.districtService.Post(this.district).subscribe(
+                (data: District) => {
+                    this.city.IdDistrict = data.Id;
+                    this.SaveCity();
+                },
+                (error) => this.alertService.Error(error));
+        }
+        else {
+            this.SaveCity();
+        }
+
+
     }
 
     public Close() {
         this.onClosed.emit();
+    }
+
+    public AddDistrict() {
+        this.district = {
+            Id: Constants.guidEmpty,
+            Name: "",
+            Country: ""
+        };
     }
 
     private LoadDistricts() {
@@ -41,5 +59,14 @@ export class CitiesDetailComponent {
                 this.districts = data;
             }
         )
+    }
+
+    private SaveCity() {
+        this.cityService.Post(this.city).subscribe(
+            (data) => {
+                this.district = null;
+                this.onSaved.emit(data);
+            },
+            (error) => this.alertService.Error(error));
     }
 }

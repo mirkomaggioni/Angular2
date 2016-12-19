@@ -19,8 +19,8 @@
             <div class="row">
                 <div class="col-md-3">
                     <select name="city" class="form-control" [(ngModel)]="customer.IdCity" [required]="validationEnabled">
-                <option *ngFor="let c of cities" [ngValue]="c.Id">{{c.Name}}</option>
-            </select>
+                        <option *ngFor="let c of cities" [ngValue]="c.Id">{{c.Name}}</option>
+                    </select>
                 </div>
                 <div class="col-md-1">
                     <button type="button" class="btn btn-default" (click)="AddCity()">{{ 'NEW' | translate }}</button>

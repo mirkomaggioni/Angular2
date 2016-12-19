@@ -1,4 +1,4 @@
-<div class="modal-dialog modal-sm">
+<div class="modal-dialog modal-lg">
     <div class="modal-content">
         <form #cityForm="ngForm" *ngIf="city">
             <div class="modal-header">
@@ -7,17 +7,38 @@
             <div class="modal-body">
                 <div class="form-group">
                     <label for="name">{{ "NAME" | translate }}</label>
-                    <input type="text" name="name" class="form-control" placeholder="{{ 'NAME' | translate }}" [(ngModel)]="city.Name" required />
+                    <input type="text" name="name" class="form-control" placeholder="{{ 'NAME' | translate }}" [(ngModel)]="city.Name" required
+                    />
                 </div>
                 <div class="form-group">
                     <label for="address">{{ "ZIP" | translate }}</label>
-                    <input type="text" name="zip" class="form-control" placeholder="{{ 'ZIP' | translate }}" [(ngModel)]="city.Zip" required />
+                    <input type="text" name="zip" class="form-control" placeholder="{{ 'ZIP' | translate }}" [(ngModel)]="city.Zip" required
+                    />
                 </div>
                 <div class="form-group">
                     <label for="address">{{ "DISTRICT" | translate }}</label>
-                    <select name="district" class="form-control" [(ngModel)]="city.IdDistrict" required>
-                        <option *ngFor="let d of districts" [ngValue]="d.Id">{{d.Name}}</option>
-                    </select>
+                    <div class="row">
+                        <div class="col-md-4" *ngIf="!district">
+                            <select name="district" class="form-control" [(ngModel)]="city.IdDistrict" required>
+                            <option *ngFor="let d of districts" [ngValue]="d.Id">{{d.Name}}</option>
+                        </select>
+                        </div>
+                        <div class="col-md-1" *ngIf="!district">
+                            <button type="button" class="btn btn-default" (click)="AddDistrict()">{{ 'NEW' | translate }}</button>
+                        </div>
+                        <div class="col-md-4" *ngIf="district">
+                            <div class="form-group">
+                                <label for="name">{{ "NAME" | translate }}</label>
+                                <input type="text" name="name" class="form-control" placeholder="{{ 'NAME' | translate }}" [(ngModel)]="district.Name" required
+                                />
+                            </div>
+                            <div class="form-group">
+                                <label for="country">{{ "COUNTRY" | translate }}</label>
+                                <input type="text" name="country" class="form-control" placeholder="{{ 'COUNTRY' | translate }}" [(ngModel)]="district.Country"
+                                    required />
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="modal-footer">

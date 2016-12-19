@@ -10,6 +10,7 @@
     "CITY": "City",
     "ZIP": "Zip",
     "DISTRICT": "District",
+    "COUNTRY": "Country",
     "NUMBER": "Number",
     "YEAR": "Year",
     "CUSTOMER": "Customer",
