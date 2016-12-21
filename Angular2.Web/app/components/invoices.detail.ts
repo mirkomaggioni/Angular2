@@ -52,8 +52,6 @@ export class InvoicesDetailComponent {
     }
 
     public Save() {
-        this.invoice.Customer = null;
-
         if (this.isNew) {
 
             this.attachmentService.Post(this.attachment).subscribe(
@@ -111,6 +109,18 @@ export class InvoicesDetailComponent {
 
     public onAttachmentSaved(attachment: Attachment) {
         this.attachment = attachment;
+    }
+
+    public onEmissionDateSelected(date: Date) {
+        this.invoice.EmissionDate = date;
+    }
+
+    public onDueDateSelected(date: Date) {
+        this.invoice.DueDate = date;
+    }
+
+    public onPaymentDateSelected(date: Date) {
+        this.invoice.PaymentDate = date;
     }
 
     private backupInvoice(invoice: Invoice) {

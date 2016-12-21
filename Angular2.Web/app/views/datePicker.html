@@ -1,9 +1,5 @@
-<input type="text" name="{{name}}" class="form-control" placeholder="{{ placeholder | translate }}" [(ngModel)]="currentDate" [required]="validationEnabled" />
-<!--<input class="form-control" name="emissionDate" placeholder="{{ 'EMISSIONDATE' | translate }}" [(ngModel)]="emissionDate" ngbDatepicker #emissionDate="ngbDatepicker">-->
-<!--<button type="submit" class="btn btn-default" (click)="emissionDate.toggle()"></button>-->
-
-<!--<input type="text" name="{{name}}" class="form-control" placeholder="{{ placeholder | translate }}" [(ngModel)]="currentDate"
-    [required]="validationEnabled" ngbDatepicker #d="ngbDatepicker">
-<div class="input-group-addon" (click)="d.toggle()">
-    <img src="img/calendar-icon.svg" style="width: 1.2rem; height: 1rem; cursor: pointer;" />
-</div>-->
+<input type="text" *ngIf="!showDatePicker" name="{{name}}" class="form-control" placeholder="{{ placeholder | translate }}" [(ngModel)]="formattedCurrentDate"
+    (click)="ShowDatePicker()" />
+<div style="display: inline-block;" *ngIf="showDatePicker">
+    <datepicker name="emissionDate" [(ngModel)]="currentDate" [showWeeks]="false" (click)="HideDatePicker()"></datepicker>
+</div>

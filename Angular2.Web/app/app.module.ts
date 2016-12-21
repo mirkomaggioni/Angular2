@@ -6,7 +6,7 @@ import { HttpModule } from "@angular/http";
 import { BrowserModule } from "@angular/platform-browser";
 import { TranslateModule } from "ng2-translate";
 import { ToastModule, ToastOptions } from "ng2-toastr/ng2-toastr";
-import { ModalModule } from 'ng2-bootstrap/ng2-bootstrap';
+import { ModalModule, DatepickerModule } from 'ng2-bootstrap/ng2-bootstrap';
 
 import "rxjs/add/observable/throw";
 import "rxjs/add/operator/catch";
@@ -64,7 +64,8 @@ let options: any = {
         TranslateModule.forRoot(),
         HttpModule,
         ToastModule.forRoot(options),
-        ModalModule.forRoot()
+        ModalModule.forRoot(),
+        DatepickerModule.forRoot()
     ],
     exports: [
         TranslateModule

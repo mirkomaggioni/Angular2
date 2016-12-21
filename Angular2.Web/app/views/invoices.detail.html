@@ -12,24 +12,33 @@
         </div>
         <div class="form-group">
             <label for="number">{{ "NUMBER" | translate }}</label>
-            <input type="text" name="NUMBER" class="form-control" placeholder="{{ 'NUMBER' | translate }}" [(ngModel)]="invoice.Number" [required]="validationEnabled" />
+            <input type="text" name="NUMBER" class="form-control" placeholder="{{ 'NUMBER' | translate }}" [(ngModel)]="invoice.Number"
+                [required]="validationEnabled" />
         </div>
         <div class="form-group">
             <label for="year">{{ "YEAR" | translate }}</label>
-            <input type="text" name="address" class="form-control" placeholder="{{ 'YEAR' | translate }}" [(ngModel)]="invoice.Year" [required]="validationEnabled" />
+            <input type="text" name="address" class="form-control" placeholder="{{ 'YEAR' | translate }}" [(ngModel)]="invoice.Year"
+                [required]="validationEnabled" />
         </div>
         <div class="form-group">
-            <label for="emissionDate">{{ "EMISSIONDATE" | translate }}</label>
-            <date-picker placeholder="EMISSIONDATE" name="emissionDate" [value]="invoice.EmissionDate" [validationEnabled]="validationEnabled"></date-picker>
-        </div>
-        
-        <div class="form-group">
-            <label for="dueDate">{{ "DUEDATE" | translate }}</label>
-            <date-picker placeholder="DUEDATE" name="dueDate" [value]="invoice.DueDate" [validationEnabled]="validationEnabled"></date-picker>        
+            <div><label for="emissionDate">{{ "EMISSIONDATE" | translate }}</label></div>
+            <!--<input type="text" *ngIf="!emissionDatePicker" name="emissioDate" class="form-control" placeholder="{{ 'EMISSIONDATE' | translate }}" [(ngModel)]="invoice.EmissionDate" (click)="emissionDatePicker=true" />-->
+            
+            <date-picker placeholder="EMISSIONDATE" name="emissionDate" [value]="invoice.EmissionDate" (onSelected)="onEmissionDateSelected($event)"></date-picker>
         </div>
         <div class="form-group">
-            <label for="paymentDate">{{ "PAYMENTDATE" | translate }}</label>
-            <date-picker placeholder="PAYMENTDATE" name="paymentDate" [value]="invoice.PaymentDate" [validationEnabled]="validationEnabled"></date-picker>
+            <div><label for="dueDate">{{ "DUEDATE" | translate }}</label></div>
+            <!--<div style="display: inline-block;">
+                <datepicker name="dueDate" [(ngModel)]="invoice.DueDate" [showWeeks]="false"></datepicker>
+            </div>-->
+            <date-picker placeholder="DUEDATE" name="dueDate" [value]="invoice.DueDate" (onSelected)="onDueDateSelected($event)"></date-picker>        
+        </div>
+        <div class="form-group">
+            <div><label for="paymentDate">{{ "PAYMENTDATE" | translate }}</label></div>
+            <!--<div style="display: inline-block;">
+                <datepicker name="paymentDate" [(ngModel)]="invoice.PaymentDate" [showWeeks]="false"></datepicker>
+            </div>-->
+            <date-picker placeholder="PAYMENTDATE" name="paymentDate" [value]="invoice.PaymentDate" (onSelected)="onPaymentDateSelected($event)"></date-picker>            
         </div>
         <div class="form-group">
             <label for="attachment">{{ "ATTACHMENT" | translate }}</label>
