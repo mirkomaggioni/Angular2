@@ -1,9 +1,10 @@
 import { Component, OnInit, Output, EventEmitter } from "@angular/core";
-import { SearchService } from "../services/search";
+import { SearchService } from "./shared/search.service";
 
 @Component({
+    moduleId: module.id,
     selector: "header",
-    templateUrl: "/app/views/header.html"
+    templateUrl: "header.component.html"
 })
 
 export class HeaderComponent implements OnInit {

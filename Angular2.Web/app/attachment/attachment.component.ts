@@ -1,12 +1,13 @@
 import { Component, Input, Output, EventEmitter } from "@angular/core";
-import { Constants } from "../commons";
-import { Attachment } from "../models/attachment";
-import { FileBlobService } from "../services/fileBlob";
-import { AlertService } from "../services/alert";
+import { Constants } from "../shared/commons";
+import { Attachment } from "./attachment.model";
+import { FileBlobService } from "./fileBlob.service";
+import { AlertService } from "../shared/alert.service";
 
 @Component({
+    moduleId: module.id,
     selector: "attachment",
-    templateUrl: "/app/views/attachment.html"
+    templateUrl: "attachment.component.html"
 })
 
 export class AttachmentComponent {

@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
 import { Http } from "@angular/http";
-import { Attachment } from "../models/attachment";
-import { WebApi } from "./webapi";
+import { Attachment } from "./attachment.model";
+import { WebApi } from "../shared/webapi";
 
 @Injectable()
 export class AttachmentService extends WebApi<Attachment>  {

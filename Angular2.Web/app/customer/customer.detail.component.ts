@@ -1,18 +1,19 @@
 import { Component, Input, Output, EventEmitter, ViewChild } from "@angular/core";
 import { TranslateService } from "ng2-translate";
 import { ModalDirective } from 'ng2-bootstrap/ng2-bootstrap';
-import { Customer } from "../models/customer";
-import { City } from "../models/city";
-import { AlertService } from "../services/alert";
-import { CustomerService } from "../services/customer";
-import { Constants } from "../commons";
+import { Customer } from "./customer.model";
+import { City } from "./city.model";
+import { AlertService } from "../shared/alert.service";
+import { CustomerService } from "./customer.service";
+import { Constants } from "../shared/commons";
 
 @Component({
-    selector: "customers-detail",
-    templateUrl: "/app/views/customers.detail.html"
+    moduleId: module.id,
+    selector: "customer-detail",
+    templateUrl: "customer.detail.component.html"
 })
 
-export class CustomersDetailComponent {
+export class CustomerDetailComponent {
     @Input() cities: City[];    
     @Input() isNew: boolean;
     @Input() validationEnabled: boolean;

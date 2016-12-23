@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
 import { Http } from "@angular/http";
-import { Invoice } from "../models/invoice";
-import { WebApi } from "./webapi";
+import { Invoice } from "./invoice.model";
+import { WebApi } from "../shared/webapi";
 import * as moment from "moment";
 
 @Injectable()

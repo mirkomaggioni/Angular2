@@ -1,10 +1,11 @@
 import { Component, Input, Output, EventEmitter } from "@angular/core";
 import * as moment from "moment";
-import { Constants } from "../commons";
+import { Constants } from "./commons";
 
 @Component({
+    moduleId: module.id,
     selector: "date-picker",
-    templateUrl: "/app/views/datePicker.html"
+    templateUrl: "datePicker.component.html"
 })
 
 export class DatePickerComponent {

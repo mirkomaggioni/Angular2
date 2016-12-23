@@ -1,4 +1,4 @@
-import { City } from "../models/city";
+import { City } from "./city.model";
 
 export class Customer {
     Id: string;

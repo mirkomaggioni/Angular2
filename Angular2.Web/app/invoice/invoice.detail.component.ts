@@ -1,20 +1,21 @@
 import { Component, Input, Output, EventEmitter, OnInit } from "@angular/core";
-import { Constants } from "../commons";
+import { Constants } from "../shared/commons";
 import { TranslateService } from "ng2-translate";
-import { Attachment } from "../models/attachment";
-import { Customer } from "../models/customer";
-import { Invoice } from "../models/invoice";
-import { AlertService } from "../services/alert";
-import { AttachmentService } from "../services/attachment";
-import { CustomerService } from "../services/customer";
-import { InvoiceService } from "../services/invoice";
+import { Attachment } from "../attachment/attachment.model";
+import { Customer } from "../customer/customer.model";
+import { Invoice } from "./invoice.model";
+import { AlertService } from "../shared/alert.service";
+import { AttachmentService } from "../attachment/attachment.service";
+import { CustomerService } from "../customer/customer.service";
+import { InvoiceService } from "./invoice.service";
 
 @Component({
-    selector: "invoices-detail",
-    templateUrl: "/app/views/invoices.detail.html"
+    moduleId: module.id,
+    selector: "invoice-detail",
+    templateUrl: "invoice.detail.component.html"
 })
 
-export class InvoicesDetailComponent {
+export class InvoiceDetailComponent {
     @Input() isNew: boolean;
     @Input() validationEnabled: boolean;
     @Output() onClosed = new EventEmitter<Invoice>();

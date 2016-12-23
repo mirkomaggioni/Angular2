@@ -1,8 +1,8 @@
 import { Injectable } from "@angular/core";
 import { Http } from "@angular/http";
-import { City } from "../models/city";
-import { WebApi } from "./webapi";
-import { AlertService } from "../services/alert";
+import { City } from "./city.model";
+import { WebApi } from "../shared/webapi";
+import { AlertService } from "../shared/alert.service";
 
 @Injectable()
 export class CityService extends WebApi<City>  {

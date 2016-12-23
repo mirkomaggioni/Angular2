@@ -1,17 +1,18 @@
 import { Component, OnInit } from "@angular/core";
 import { TranslateService } from "ng2-translate";
-import { Invoice } from "../models/invoice";
-import { Constants } from "../commons";
-import { AlertService } from "../services/alert";
-import { InvoiceService } from "../services/invoice";
-import { SearchService } from "../services/search";
+import { Invoice } from "./invoice.model";
+import { Constants } from "../shared/commons";
+import { AlertService } from "../shared/alert.service";
+import { InvoiceService } from "./invoice.service";
+import { SearchService } from "../shared/search.service";
 
 @Component({
-    selector: "invoices",
-    templateUrl: "/app/views/invoices.html"
+    moduleId: module.id,
+    selector: "invoice",
+    templateUrl: "invoice.component.html"
 })
 
-export class InvoicesComponent implements OnInit {
+export class InvoiceComponent implements OnInit {
     public invoices: Invoice[];
     public invoice: Invoice;
     public edit = false;

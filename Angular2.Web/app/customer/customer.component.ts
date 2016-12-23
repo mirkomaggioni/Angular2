@@ -1,19 +1,21 @@
 import { Component, OnInit } from "@angular/core";
 import { TranslateService } from "ng2-translate";
-import { Customer } from "../models/customer";
-import { City } from "../models/city";
-import { Constants } from "../commons";
-import { AlertService } from "../services/alert";
-import { CustomerService } from "../services/customer";
-import { CityService } from "../services/city";
-import { SearchService } from "../services/search";
+import { SharedModule } from "../shared/shared.module";
+import { Customer } from "./customer.model";
+import { City } from "./city.model";
+import { Constants } from "../shared/commons";
+import { AlertService } from "../shared/alert.service";
+import { CustomerService } from "./customer.service";
+import { CityService } from "./city.service";
+import { SearchService } from "../shared/search.service";
 
 @Component({
-    selector: "customers",
-    templateUrl: "/app/views/customers.html"
+    moduleId: module.id,
+    selector: "customer",
+    templateUrl: "customer.component.html"
 })
 
-export class CustomersComponent implements OnInit {
+export class CustomerComponent implements OnInit {
     public customers: Customer[];
     public cities: City[];
     public customer: Customer;
@@ -21,7 +23,7 @@ export class CustomersComponent implements OnInit {
     public newCustomer = false;
     public customerValidationEnabled = true;
 
-    constructor(private customerService: CustomerService, private cityService: CityService, private alertService: AlertService, private searchService: SearchService, private translateService: TranslateService) { }
+    constructor(private customerService: CustomerService, private cityService: CityService, private alertService: AlertService, private searchService: SearchService, private translateService: TranslateService) {}
 
     ngOnInit() {
         this.searchService.searchText = "";

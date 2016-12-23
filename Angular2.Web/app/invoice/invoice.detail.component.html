@@ -22,22 +22,14 @@
         </div>
         <div class="form-group">
             <div><label for="emissionDate">{{ "EMISSIONDATE" | translate }}</label></div>
-            <!--<input type="text" *ngIf="!emissionDatePicker" name="emissioDate" class="form-control" placeholder="{{ 'EMISSIONDATE' | translate }}" [(ngModel)]="invoice.EmissionDate" (click)="emissionDatePicker=true" />-->
-            
             <date-picker placeholder="EMISSIONDATE" name="emissionDate" [value]="invoice.EmissionDate" (onSelected)="onEmissionDateSelected($event)"></date-picker>
         </div>
         <div class="form-group">
             <div><label for="dueDate">{{ "DUEDATE" | translate }}</label></div>
-            <!--<div style="display: inline-block;">
-                <datepicker name="dueDate" [(ngModel)]="invoice.DueDate" [showWeeks]="false"></datepicker>
-            </div>-->
             <date-picker placeholder="DUEDATE" name="dueDate" [value]="invoice.DueDate" (onSelected)="onDueDateSelected($event)"></date-picker>        
         </div>
         <div class="form-group">
             <div><label for="paymentDate">{{ "PAYMENTDATE" | translate }}</label></div>
-            <!--<div style="display: inline-block;">
-                <datepicker name="paymentDate" [(ngModel)]="invoice.PaymentDate" [showWeeks]="false"></datepicker>
-            </div>-->
             <date-picker placeholder="PAYMENTDATE" name="paymentDate" [value]="invoice.PaymentDate" (onSelected)="onPaymentDateSelected($event)"></date-picker>            
         </div>
         <div class="form-group">

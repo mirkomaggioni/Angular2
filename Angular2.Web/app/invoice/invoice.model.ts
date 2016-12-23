@@ -1,4 +1,4 @@
-import { Customer } from "../models/customer";
+import { Customer } from "../customer/customer.model";
 
 export class Invoice {
     Id: string;

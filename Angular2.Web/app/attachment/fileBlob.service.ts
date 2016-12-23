@@ -1,8 +1,8 @@
 import { Injectable } from "@angular/core";
 import { Http, Headers, RequestOptions, Response } from "@angular/http";
 import { Observable } from "rxjs/Observable";
-import { FileBlob } from "../models/fileBlob";
-import { WebApi } from "./webapi";
+import { FileBlob } from "./fileBlob.model";
+import { WebApi } from "../shared/webapi";
 
 @Injectable()
 export class FileBlobService extends WebApi<FileBlob> {

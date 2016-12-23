@@ -1,18 +1,19 @@
 import { Component, Input, Output, EventEmitter, OnInit } from "@angular/core";
 import { TranslateService } from "ng2-translate";
-import { Constants } from "../commons";
-import { City } from "../models/city";
-import { District } from "../models/district";
-import { AlertService } from "../services/alert";
-import { CityService } from "../services/city";
-import { DistrictService } from "../services/district";
+import { Constants } from "../shared/commons";
+import { City } from "./city.model";
+import { District } from "./district.model";
+import { AlertService } from "../shared/alert.service";
+import { CityService } from "./city.service";
+import { DistrictService } from "./district.service";
 
 @Component({
-    selector: "cities-detail",
-    templateUrl: "/app/views/cities.detail.html"
+    moduleId: module.id,
+    selector: "city-detail",
+    templateUrl: "city.detail.component.html"
 })
 
-export class CitiesDetailComponent {
+export class CityDetailComponent {
     @Input() city: City;
     @Output() onSaved = new EventEmitter<City>();
     @Output() onClosed = new EventEmitter();
