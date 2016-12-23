@@ -7,7 +7,6 @@ import { TranslateModule } from "ng2-translate";
 import { ToastModule, ToastOptions } from "ng2-toastr/ng2-toastr";
 
 import { AlertService } from "./alert.service";
-import { SearchService } from "./search.service";
 import { DatePickerComponent } from "./datePicker.component";
 
 let options: any = {
@@ -35,8 +34,7 @@ let options: any = {
     ],
     providers: [
         ToastModule,
-        AlertService,
-        SearchService
+        AlertService
     ],
     declarations: [
         DatePickerComponent

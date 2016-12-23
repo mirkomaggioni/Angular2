@@ -7,7 +7,7 @@ import { Constants } from "../shared/commons";
 import { AlertService } from "../shared/alert.service";
 import { CustomerService } from "./customer.service";
 import { CityService } from "./city.service";
-import { SearchService } from "../shared/search.service";
+import { SearchService } from "../core/search.service";
 
 @Component({
     moduleId: module.id,

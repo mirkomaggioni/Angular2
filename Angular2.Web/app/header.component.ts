@@ -1,5 +1,5 @@
 import { Component, OnInit, Output, EventEmitter } from "@angular/core";
-import { SearchService } from "./shared/search.service";
+import { SearchService } from "./core/search.service";
 
 @Component({
     moduleId: module.id,

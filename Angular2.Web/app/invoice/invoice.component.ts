@@ -4,7 +4,7 @@ import { Invoice } from "./invoice.model";
 import { Constants } from "../shared/commons";
 import { AlertService } from "../shared/alert.service";
 import { InvoiceService } from "./invoice.service";
-import { SearchService } from "../shared/search.service";
+import { SearchService } from "../core/search.service";
 
 @Component({
     moduleId: module.id,
