@@ -42,6 +42,7 @@ import { DistrictService } from "./district.service";
     ],
     providers: [
         CityService,
+        DistrictService,
         CustomerService
     ]
 })

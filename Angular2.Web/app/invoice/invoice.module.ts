@@ -16,6 +16,8 @@ import { InvoiceComponent } from "./invoice.component";
 import { InvoiceDetailComponent } from "./invoice.detail.component";
 import { SearchInvoicesPipe } from "./searchInvoices.pipe";
 import { InvoiceService } from "./invoice.service";
+import { CustomerService } from "../customer/customer.service";
+import { DatePickerComponent } from "../shared/datePicker.component";
 
 @NgModule ({
     imports: [ 
@@ -34,10 +36,12 @@ import { InvoiceService } from "./invoice.service";
     declarations: [
         InvoiceComponent,
         InvoiceDetailComponent,
-        SearchInvoicesPipe
+        SearchInvoicesPipe,
+        DatePickerComponent
     ],
     providers: [
-        InvoiceService
+        InvoiceService,
+        CustomerService
     ]
 })
 

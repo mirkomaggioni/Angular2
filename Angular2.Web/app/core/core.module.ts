@@ -2,7 +2,7 @@ import { NgModule, ModuleWithProviders, Optional, SkipSelf } from "@angular/core
 import { SearchService } from "./search.service";
 
 @NgModule ({
-    
+
 })
 
 export class CoreModule {
@@ -16,7 +16,7 @@ export class CoreModule {
     return {
       ngModule: CoreModule,
       providers: [
-          SearchService
+        SearchService
       ]
     };
   }

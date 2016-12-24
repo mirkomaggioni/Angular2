@@ -1,6 +1,8 @@
 import { NgModule } from "@angular/core";
+import { HttpModule } from "@angular/http";
 import { RouterModule } from "@angular/router";
 import { BrowserModule } from "@angular/platform-browser";
+import { TranslateModule } from "ng2-translate";
 
 import { SharedModule } from "./shared/shared.module";
 import { CoreModule } from "./core/core.module";
@@ -10,6 +12,8 @@ import { HeaderComponent } from "./header.component";
 @NgModule ({
     imports: [
         BrowserModule,
+        HttpModule,
+        TranslateModule.forRoot(),        
         CoreModule.forRoot(),
         SharedModule,
         RouterModule.forRoot([
@@ -25,7 +29,7 @@ import { HeaderComponent } from "./header.component";
         { 
             path: "invoices",
             loadChildren: "app/invoice/invoice.module#InvoiceModule"
-        }
+        },
     ])],
     exports: [
         RouterModule

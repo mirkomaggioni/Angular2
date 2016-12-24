@@ -1,6 +1,5 @@
 import { NgModule } from "@angular/core";
 import { HttpModule } from "@angular/http";
-import { TranslateModule } from "ng2-translate";
 
 import "rxjs/add/observable/throw";
 import "rxjs/add/operator/catch";
@@ -23,12 +22,10 @@ let options: any = {
 @NgModule ({
     imports: [
         SharedModule,
-        HttpModule,
-        TranslateModule.forRoot()
+        HttpModule
     ],
     exports: [
-        AttachmentComponent,
-        TranslateModule
+        AttachmentComponent
     ],
     declarations: [
         AttachmentComponent
