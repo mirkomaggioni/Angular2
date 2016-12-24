@@ -1,6 +1,7 @@
 import { Component, Input, Output, EventEmitter, OnInit } from "@angular/core";
 import { Constants } from "../shared/commons";
 import { TranslateService } from "ng2-translate";
+
 import { Attachment } from "../attachment/attachment.model";
 import { Customer } from "../customer/customer.model";
 import { Invoice } from "./invoice.model";
