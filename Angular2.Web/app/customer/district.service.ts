@@ -2,7 +2,7 @@ import { Injectable } from "@angular/core";
 import { Http } from "@angular/http";
 import { District } from "./district.model";
 import { WebApi } from "../shared/webapi";
-import { AlertService } from "../shared/alert.service";
+import { AlertService } from "../core/alert.service";
 
 @Injectable()
 export class DistrictService extends WebApi<District>  {

@@ -4,7 +4,7 @@ import { TranslateService } from "ng2-translate";
 import { Attachment } from "../attachment/attachment.model";
 import { Customer } from "../customer/customer.model";
 import { Invoice } from "./invoice.model";
-import { AlertService } from "../shared/alert.service";
+import { AlertService } from "../core/alert.service";
 import { AttachmentService } from "../attachment/attachment.service";
 import { CustomerService } from "../customer/customer.service";
 import { InvoiceService } from "./invoice.service";

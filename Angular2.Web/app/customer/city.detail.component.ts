@@ -3,7 +3,7 @@ import { TranslateService } from "ng2-translate";
 import { Constants } from "../shared/commons";
 import { City } from "./city.model";
 import { District } from "./district.model";
-import { AlertService } from "../shared/alert.service";
+import { AlertService } from "../core/alert.service";
 import { CityService } from "./city.service";
 import { DistrictService } from "./district.service";
 

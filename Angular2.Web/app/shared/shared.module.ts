@@ -3,13 +3,6 @@ import { FormsModule } from "@angular/forms";
 import { CommonModule } from "@angular/common";
 import { TranslateModule } from "ng2-translate";
 import { ModalModule, DatepickerModule } from 'ng2-bootstrap/ng2-bootstrap';
-import { ToastModule, ToastOptions } from "ng2-toastr/ng2-toastr";
-import { AlertService } from "./alert.service";
-
-let options: any = {
-  autoDismiss: true,
-  positionClass: 'toast-bottom-right',
-};
 
 @NgModule ({
     imports: [
@@ -17,7 +10,7 @@ let options: any = {
         CommonModule,
         ModalModule.forRoot(),
         DatepickerModule.forRoot(),
-        ToastModule.forRoot(options)
+        
     ],
     exports: [
         FormsModule,
@@ -25,10 +18,6 @@ let options: any = {
         TranslateModule,
         ModalModule,
         DatepickerModule
-    ],
-    providers: [
-        ToastModule,
-        AlertService
     ]
 })
 

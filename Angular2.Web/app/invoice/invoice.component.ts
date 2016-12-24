@@ -2,7 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { TranslateService } from "ng2-translate";
 import { Invoice } from "./invoice.model";
 import { Constants } from "../shared/commons";
-import { AlertService } from "../shared/alert.service";
+import { AlertService } from "../core/alert.service";
 import { InvoiceService } from "./invoice.service";
 import { SearchService } from "../core/search.service";
 

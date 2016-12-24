@@ -1,8 +1,17 @@
 import { NgModule, ModuleWithProviders, Optional, SkipSelf } from "@angular/core";
+import { ToastModule } from "ng2-toastr/ng2-toastr";
 import { SearchService } from "./search.service";
+import { AlertService } from "./alert.service";
+
+let options: any = {
+  autoDismiss: true,
+  positionClass: 'toast-bottom-right',
+};
 
 @NgModule ({
-
+  imports: [
+    ToastModule.forRoot(options)
+  ]
 })
 
 export class CoreModule {
@@ -16,7 +25,9 @@ export class CoreModule {
     return {
       ngModule: CoreModule,
       providers: [
-        SearchService
+        SearchService,
+        ToastModule,
+        AlertService
       ]
     };
   }

@@ -4,7 +4,7 @@ import { SharedModule } from "../shared/shared.module";
 import { Customer } from "./customer.model";
 import { City } from "./city.model";
 import { Constants } from "../shared/commons";
-import { AlertService } from "../shared/alert.service";
+import { AlertService } from "../core/alert.service";
 import { CustomerService } from "./customer.service";
 import { CityService } from "./city.service";
 import { SearchService } from "../core/search.service";

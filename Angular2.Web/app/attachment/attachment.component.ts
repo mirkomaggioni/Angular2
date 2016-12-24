@@ -2,7 +2,7 @@ import { Component, Input, Output, EventEmitter } from "@angular/core";
 import { Constants } from "../shared/commons";
 import { Attachment } from "./attachment.model";
 import { FileBlobService } from "./fileBlob.service";
-import { AlertService } from "../shared/alert.service";
+import { AlertService } from "../core/alert.service";
 
 @Component({
     moduleId: module.id,

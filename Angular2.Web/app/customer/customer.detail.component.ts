@@ -3,7 +3,7 @@ import { TranslateService } from "ng2-translate";
 import { ModalDirective } from 'ng2-bootstrap/ng2-bootstrap';
 import { Customer } from "./customer.model";
 import { City } from "./city.model";
-import { AlertService } from "../shared/alert.service";
+import { AlertService } from "../core/alert.service";
 import { CustomerService } from "./customer.service";
 import { Constants } from "../shared/commons";
 
