@@ -1,6 +1,7 @@
 import { Component, Input, Output, EventEmitter, OnInit } from "@angular/core";
 import { Constants } from "../shared/commons";
 import { TranslateService } from "ng2-translate";
+import { Observable } from "rxjs/Observable";
 import * as _ from "lodash";
 
 import { Attachment } from "../attachment/attachment.model";
@@ -75,18 +76,16 @@ export class InvoiceDetailComponent {
                 (error) => this.alertService.Error(error));
         }
         else {
-            this.attachmentService.Put(this.attachment.Id, this.attachment).subscribe(
-                (attachment) => {
-                    this.invoiceService.Put(this.invoice.Id, this.invoice).subscribe(
-                        (Invoice) => {
-                            this.backupInvoice(this.invoice);
-                            this.translateService.get("INVOICESAVED").subscribe((res: string) => {
-                                this.alertService.Success(res);
-                            });
-                        },
-                        (error) => this.alertService.Error(error));
-                },
-                (error) => this.alertService.Error(error));
+            Observable.forkJoin(
+                this.attachmentService.Put(this.attachment.Id, this.attachment),
+                this.invoiceService.Put(this.invoice.Id, this.invoice)
+            ).subscribe((res) => {
+                this.backupInvoice(this.invoice);
+                this.translateService.get("INVOICESAVED").subscribe((res: string) => {
+                    this.alertService.Success(res);
+                });
+            },
+            (error) => this.alertService.Error(error));
         }
     }
 

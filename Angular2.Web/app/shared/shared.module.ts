@@ -5,6 +5,7 @@ import { TranslateModule } from "ng2-translate";
 import { ModalModule, DatepickerModule } from 'ng2-bootstrap/ng2-bootstrap';
 
 import "rxjs/add/observable/throw";
+import "rxjs/add/observable/forkJoin";
 import "rxjs/add/operator/catch";
 import "rxjs/add/operator/debounceTime";
 import "rxjs/add/operator/distinctUntilChanged";
