@@ -12,12 +12,12 @@
         </div>
         <div class="form-group">
             <label for="number">{{ "NUMBER" | translate }}</label>
-            <input type="text" name="NUMBER" class="form-control" placeholder="{{ 'NUMBER' | translate }}" [(ngModel)]="invoice.Number"
+            <input type="number" name="NUMBER" class="form-control" placeholder="{{ 'NUMBER' | translate }}" [(ngModel)]="invoice.Number"
                 [required]="validationEnabled" />
         </div>
         <div class="form-group">
             <label for="year">{{ "YEAR" | translate }}</label>
-            <input type="text" name="address" class="form-control" placeholder="{{ 'YEAR' | translate }}" [(ngModel)]="invoice.Year"
+            <input type="number" name="address" class="form-control" placeholder="{{ 'YEAR' | translate }}" [(ngModel)]="invoice.Year"
                 [required]="validationEnabled" />
         </div>
         <div class="form-group">

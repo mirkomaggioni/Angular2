@@ -85,8 +85,7 @@ export class CustomerDetailComponent {
         this.city = {
             Id: Constants.guidEmpty,
             IdDistrict: "",
-            Name: "",
-            Zip: 0
+            Name: ""
         };
 
         this.citiesModal.show();
