@@ -11,11 +11,7 @@ export class SearchCustomersPipe implements PipeTransform {
         let filteredCustomers: Customer[] = new Array<Customer>();
 
         if (customers != undefined) {
-            customers.forEach(customer => {
-                if ((customer.Name.indexOf(searchText) != -1) || (customer.Address.indexOf(searchText) != -1)) {
-                    filteredCustomers.push(customer);
-                }
-            });
+            filteredCustomers = customers.filter(c => (c.Name.indexOf(searchText) != -1) || (c.Address.indexOf(searchText) != -1));
         }
 
         return filteredCustomers;

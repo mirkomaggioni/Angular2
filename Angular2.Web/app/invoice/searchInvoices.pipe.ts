@@ -11,11 +11,7 @@ export class SearchInvoicesPipe implements PipeTransform {
         let filteredInvoices: Invoice[] = new Array<Invoice>();
 
         if (invoices != undefined) {
-            invoices.forEach(invoice => {
-                if ((invoice.Number.toString().indexOf(searchText) != -1) || (invoice.Year.toString().indexOf(searchText) != -1)) {
-                    filteredInvoices.push(invoice);
-                }
-            });
+            filteredInvoices = invoices.filter(i => (i.Number.toString().indexOf(searchText) != -1) || (i.Year.toString().indexOf(searchText) != -1));
         }
 
         return filteredInvoices;

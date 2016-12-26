@@ -11,11 +11,8 @@ export class CityNamePipe implements PipeTransform {
         let name = "";
 
         if (cities != undefined) {
-            cities.forEach(city => {
-                if (city.Id == id) {
-                    name = city.Name;
-                }
-            });
+            var city = cities.find(c => c.Id == id);
+            name = city.Name;
         }
 
         return name;
