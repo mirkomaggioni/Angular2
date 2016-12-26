@@ -1,5 +1,7 @@
 import { Component, Input, Output, EventEmitter, ViewChild } from "@angular/core";
 import { TranslateService } from "ng2-translate";
+import * as _ from "lodash";
+
 import { ModalDirective } from 'ng2-bootstrap/ng2-bootstrap';
 import { Customer } from "./customer.model";
 import { City } from "./city.model";
@@ -103,18 +105,12 @@ export class CustomerDetailComponent {
     }
 
     private backupCustomer(customer: Customer) {
-        this.originalCustomer = {
-            Id: customer.Id,
-            IdCity: customer.IdCity,
-            Name: customer.Name,
-            Address: customer.Address,
-            City: customer.City
-        }
+        this.originalCustomer = _.cloneDeep(customer);
     }
 
     private restoreCustomer() {
-        this.currentCustomer.Name = this.originalCustomer.Name;
-        this.currentCustomer.Address = this.originalCustomer.Address;
-        this.currentCustomer.City = this.originalCustomer.City;
+        this.currentCustomer = _.mapValues(this.originalCustomer, function(value) {
+            return value;
+        });
     }
 }

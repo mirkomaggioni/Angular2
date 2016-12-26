@@ -18,6 +18,7 @@
       'angular-in-memory-web-api': 'npm:angular-in-memory-web-api',
       'ng2-translate': 'npm:ng2-translate/bundles/index.js',
       'ng2-toastr': 'npm:ng2-toastr',
+      'lodash': 'npm:lodash/lodash.js',
       'moment': "npm:moment",
       'ng2-bootstrap/ng2-bootstrap': 'npm:ng2-bootstrap/bundles/ng2-bootstrap.umd.js'
     },

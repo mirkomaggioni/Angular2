@@ -1,6 +1,7 @@
 import { Component, Input, Output, EventEmitter, OnInit } from "@angular/core";
 import { Constants } from "../shared/commons";
 import { TranslateService } from "ng2-translate";
+import * as _ from "lodash";
 
 import { Attachment } from "../attachment/attachment.model";
 import { Customer } from "../customer/customer.model";
@@ -126,28 +127,13 @@ export class InvoiceDetailComponent {
     }
 
     private backupInvoice(invoice: Invoice) {
-        this.originalInvoice = {
-            Id: invoice.Id,
-            IdCustomer: invoice.IdCustomer,
-            IdAttachment: invoice.IdAttachment,
-            Number: invoice.Number,
-            Year: invoice.Year,
-            EmissionDate: invoice.EmissionDate,
-            DueDate: invoice.DueDate,
-            PaymentDate: invoice.PaymentDate,
-            Customer: invoice.Customer
-        }
+        this.originalInvoice = _.cloneDeep(invoice);
     }
 
     private restoreInvoice() {
-        this.currentInvoice.Id = this.originalInvoice.Id;
-        this.currentInvoice.IdCustomer = this.originalInvoice.IdCustomer;
-        this.currentInvoice.IdAttachment = this.originalInvoice.IdAttachment;
-        this.currentInvoice.Number = this.originalInvoice.Number;
-        this.currentInvoice.Year = this.originalInvoice.Year;
-        this.currentInvoice.EmissionDate = this.originalInvoice.EmissionDate;
-        this.currentInvoice.DueDate = this.originalInvoice.DueDate;
-        this.currentInvoice.PaymentDate = this.originalInvoice.PaymentDate;
+        this.currentInvoice = _.mapValues(this.originalInvoice, function(value) {
+            return value;
+        });
     }
 
     private LoadCustomers() {

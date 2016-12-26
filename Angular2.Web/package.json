@@ -4,6 +4,7 @@
   "private": true,
   "devDependencies": {
     "@types/node": "^6.0.52",
+    "@types/lodash": "^4.14.44",
     "concurrently": "^3.1.0",
     "del": "^2.2.2",
     "gulp": "^3.9.1",
@@ -30,6 +31,7 @@
     "core-js": "^2.4.1",
     "gulp-sourcemaps": "^2.1.1",
     "gulp-typescript": "^3.0.2",
+    "lodash": "^4.17.3",
     "ng2-bootstrap": "^1.1.16-7",
     "ng2-toastr": "^1.2.1",
     "ng2-translate": "^3.2.1",
