@@ -12,7 +12,7 @@ export class DatePickerComponent {
     @Input() placeholder: string;
     @Input() name: string;
     @Input() validationEnabled: boolean;
-    @Output() onSelected = new EventEmitter<string>();
+    @Output() onSelected = new EventEmitter<Date>();
     public currentDate: Date;
     public formattedCurrentDate: string = "";
     public showDatePicker: boolean = false;
@@ -32,6 +32,6 @@ export class DatePickerComponent {
     public HideDatePicker() {
         this.showDatePicker = false;
         this.formattedCurrentDate = moment(this.currentDate).format(Constants.dateFormat);
-        this.onSelected.emit(moment(this.currentDate).format(Constants.momentDateFormat));
+        this.onSelected.emit(this.currentDate);
     }
 }
