@@ -32,9 +32,11 @@ export class CustomerComponent implements OnInit {
 
     public Load() {
         this.LoadCities();
+        this.alertService.isLoading = true;
 
         this.customerService.GetAll().subscribe(
             (data) => {
+                this.alertService.isLoading = false;
                 this.customers = data;
                 this.customer = null;
                 this.translateService.get("CUSTOMERSLOADED").subscribe((res: string) => {

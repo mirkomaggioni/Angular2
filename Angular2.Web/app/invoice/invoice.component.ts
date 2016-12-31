@@ -27,8 +27,11 @@ export class InvoiceComponent implements OnInit {
     }
 
     public Load() {
+        this.alertService.isLoading = false;
+
         this.invoiceService.GetAll().subscribe(
             (data: Invoice[]) => {
+                this.alertService.isLoading = false;
                 this.invoices = this.invoiceService.Map(data);
                 this.invoice = null;
                 this.translateService.get("INVOICESLOADED").subscribe((res: string) => {

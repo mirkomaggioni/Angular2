@@ -17,6 +17,9 @@
     </small>
   </div>
   <div class="col-md-10">
-    <router-outlet></router-outlet>
+    <div class="loader" [hidden]="!onLoading"></div>
+    <div [hidden]="onLoading">
+      <router-outlet></router-outlet>      
+    </div>
   </div>
 </div>

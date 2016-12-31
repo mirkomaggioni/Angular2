@@ -1,5 +1,6 @@
-import { Component, ViewContainerRef } from "@angular/core";
+import { Component, ViewContainerRef, OnInit } from "@angular/core";
 import { TranslateService } from "ng2-translate";
+import { AlertService } from "./core/alert.service";
 
 @Component({
     moduleId: module.id,
@@ -8,11 +9,18 @@ import { TranslateService } from "ng2-translate";
 })
 
 export class AppComponent {
+    public onLoading: boolean = true;
     private viewContainerRef: ViewContainerRef;
 
-    constructor (translateService: TranslateService, viewContainerRef:ViewContainerRef) {
+    constructor (translateService: TranslateService, viewContainerRef:ViewContainerRef, private alertService: AlertService) {
         translateService.setDefaultLang("en");
         translateService.use("en");
         this.viewContainerRef = viewContainerRef;
+    }
+
+    ngOnInit() {
+        this.alertService.onLoading.subscribe((onLoading: boolean) => {
+           this.onLoading = onLoading;
+        });
     }
 }
