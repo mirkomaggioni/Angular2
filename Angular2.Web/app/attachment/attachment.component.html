@@ -1,8 +1,11 @@
 
 <div *ngIf="AttachmentIsNull()">
-    <i class="fa fa-paperclip"></i> {{ "ATTACHINVOICE" | translate }}<input type="file" [(ngModel)]="fileBlob" (change)="AddAttachment($event)" [required]="validationEnabled" />    
+    <label class="btn btn-primary" for="fileBlob">
+        <i class="fa fa-paperclip"></i> {{ "ATTACHINVOICE" | translate }}
+        <input id="fileBlob" type="file" [(ngModel)]="fileBlob" (change)="AddAttachment($event)" [required]="validationEnabled" style="display: none;" />    
+    </label>
 </div>
 <div *ngIf="!AttachmentIsNull()">
     <span *ngIf="attachment" (click)="DownloadAttachment()">{{attachment.Name}}</span>
-    <input type="button" value="Upload new" (click)="UploadNewAttachment()" />
+    <input type="button" class="btn btn-primary" value="Upload new" (click)="UploadNewAttachment()" />
 </div>
