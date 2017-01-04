@@ -1,12 +1,11 @@
 import { Component, OnInit } from "@angular/core";
 import { TranslateService } from "ng2-translate";
+
 import { SharedModule } from "../shared/shared.module";
 import { Customer } from "./customer.model";
-import { City } from "./city.model";
-import { Constants } from "../shared/commons";
+import { Constants } from "../shared/commons";  
 import { AlertService } from "../core/alert.service";
 import { CustomerService } from "./customer.service";
-import { CityService } from "./city.service";
 import { SearchService } from "../core/search.service";
 
 @Component({
@@ -17,13 +16,12 @@ import { SearchService } from "../core/search.service";
 
 export class CustomerComponent implements OnInit {
     public customers: Customer[];
-    public cities: City[];
     public customer: Customer;
     public edit = false;
     public newCustomer = false;
     public customerValidationEnabled = true;
 
-    constructor(private customerService: CustomerService, private cityService: CityService, private alertService: AlertService, private searchService: SearchService, private translateService: TranslateService) {}
+    constructor(private customerService: CustomerService, private alertService: AlertService, private searchService: SearchService, private translateService: TranslateService) {}
 
     ngOnInit() {
         this.searchService.searchText = "";
@@ -31,7 +29,6 @@ export class CustomerComponent implements OnInit {
     }
 
     public Load() {
-        this.LoadCities();
         this.alertService.isLoading = true;
 
         this.customerService.GetAll().subscribe(
@@ -52,7 +49,7 @@ export class CustomerComponent implements OnInit {
             IdCity: "",
             Name: "",
             Address: "",
-            City: null
+            City: { Id: Constants.guidEmpty, Name: "", IdDistrict: Constants.guidEmpty }
         };
 
         this.customer = newCustomer;
@@ -79,13 +76,5 @@ export class CustomerComponent implements OnInit {
     onDeleted(customer: Customer) {
         this.customers.splice(this.customers.indexOf(this.customer), 1);
         this.edit = false;
-    }
-
-    private LoadCities() {
-        this.cityService.GetAll().subscribe(
-            (data: City[]) => {
-                this.cities = data;
-            }
-        )
     }
 }

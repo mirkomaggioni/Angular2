@@ -1,0 +1,16 @@
+<div class="form-group">
+    <label for="city">{{ "CITY" | translate }}</label>
+    <div class="row">
+        <div class="col-md-3">
+            <input type="text" name="city" class="form-control" placeholder="{{ 'CITY' | translate }}" [(ngModel)]="city.Name"
+                (ngModelChange)="Search($event)" (focus)="Focus()" />
+            <div *ngIf="cities">
+                <ul *ngFor="let city of cities">
+                    <li (click)="Select(city)">
+                        {{city.Name}} ({{city.District.Name}})
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,10 +1,10 @@
 import { Component, Input, Output, EventEmitter, ViewChild } from "@angular/core";
+import { NgForm } from "@angular/forms";
 import { TranslateService } from "ng2-translate";
 import * as _ from "lodash";
 
-import { ModalDirective } from 'ng2-bootstrap/ng2-bootstrap';
 import { Customer } from "./customer.model";
-import { City } from "./city.model";
+import { City } from "../city/city.model";
 import { AlertService } from "../core/alert.service";
 import { CustomerService } from "./customer.service";
 import { Constants } from "../shared/commons";
@@ -16,14 +16,10 @@ import { Constants } from "../shared/commons";
 })
 
 export class CustomerDetailComponent {
-    @Input() cities: City[];    
     @Input() isNew: boolean;
     @Input() validationEnabled: boolean;
     @Output() onClosed = new EventEmitter<Customer>();
     @Output() onDeleted = new EventEmitter<Customer>();
-    @ViewChild('citiesModal') public citiesModal: ModalDirective;
-    public city: City;
-    public idCitySelected: string;
     private currentCustomer: Customer;
     private originalCustomer: Customer;
 
@@ -40,8 +36,6 @@ export class CustomerDetailComponent {
     constructor(private customerService: CustomerService, private alertService: AlertService, private translateService: TranslateService) {}
 
     public Save() {
-        this.customer.City = null;
-
         if (this.isNew) {
             this.customerService.Post(this.customer).subscribe(
                 (data) => {
@@ -81,26 +75,13 @@ export class CustomerDetailComponent {
             (error) => this.alertService.Error(error));
     }
 
-    public AddCity() {
-        this.city = {
-            Id: Constants.guidEmpty,
-            IdDistrict: "",
-            Name: ""
-        };
-
-        this.citiesModal.show();
-    }
-
-    onCitySaved(city: City) {
+    onCitySelected(city: City) {
         this.customer.IdCity = city.Id;
-        this.city = city;
-        this.cities.push(city);
-        this.citiesModal.hide();
+        this.customer.City = city;
     }
 
-    onCityClosed() {
-        this.city = null;
-        this.citiesModal.hide();
+    isValid(form: NgForm) {
+        return form.valid && this.customer.IdCity != Constants.guidEmpty;
     }
 
     private backupCustomer(customer: Customer) {

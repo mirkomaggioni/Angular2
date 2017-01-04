@@ -1,34 +1,18 @@
 <form #customerForm="ngForm">
     <div class="form">
-        <button type="submit" class="btn btn-primary" (click)="Save(customerForm)" [disabled]="!customerForm.form.valid">{{ "SAVE" | translate }}</button>
+        <button type="submit" class="btn btn-primary" (click)="Save(customerForm)" [disabled]="!isValid(customerForm)">{{ "SAVE" | translate }}</button>
         <button type="submit" class="btn btn-danger" (click)="Delete()" *ngIf="!isNew">{{ "DELETE" | translate }}</button>
         <button type="submit" class="btn btn-default" (click)="Close()">{{ "CLOSE" | translate }}</button>
 
         <div class="form-group">
             <label for="name">{{ "NAME" | translate }}</label>
-            <input type="text" name="name" class="form-control" placeholder="{{ 'NAME' | translate }}" [(ngModel)]="customer.Name" [required]="validationEnabled"
-            />
+            <input type="text" name="name" class="form-control" placeholder="{{ 'NAME' | translate }}" [(ngModel)]="customer.Name" [required]="validationEnabled" />
         </div>
         <div class="form-group">
             <label for="address">{{ "ADDRESS" | translate }}</label>
             <input type="text" name="address" class="form-control" placeholder="{{ 'ADDRESS' | translate }}" [(ngModel)]="customer.Address"
                 [required]="validationEnabled" />
         </div>
-        <div class="form-group">
-            <label for="address">{{ "CITY" | translate }}</label>
-            <div class="row">
-                <div class="col-md-3">
-                    <select name="city" class="form-control" [(ngModel)]="customer.IdCity" [required]="validationEnabled">
-                        <option *ngFor="let c of cities" [ngValue]="c.Id">{{c.Name}}</option>
-                    </select>
-                </div>
-                <div class="col-md-1">
-                    <button type="button" class="btn btn-default" (click)="AddCity()">{{ 'NEW' | translate }}</button>
-                </div>
-            </div>
-            <div bsModal #citiesModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
-                <city-detail [city]="city" (onSaved)="onCitySaved($event)" (onClosed)="onCityClosed($event)"></city-detail>
-            </div>
-        </div>
+        <city [city]="customer.City" (onSelected)="onCitySelected($event)"></city>
     </div>
 </form>
