@@ -49,6 +49,11 @@ namespace Angular2.Web.Controllers.Api
                 return BadRequest();
             }
 
+            if (customer.City != null)
+            {
+                _db.Entry(customer.City).State = EntityState.Unchanged;
+            }
+
             _db.Entry(customer).State = EntityState.Modified;
 
             try
@@ -82,6 +87,11 @@ namespace Angular2.Web.Controllers.Api
             if (customer.Id == Guid.Empty)
             {
                 customer.Id = Guid.NewGuid();
+            }
+
+            if (customer.City != null)
+            {
+                _db.Entry(customer.City).State = EntityState.Unchanged;
             }
 
             _db.Customers.Add(customer);

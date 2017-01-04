@@ -17,9 +17,9 @@ namespace Angular2.Web.Controllers.Api
         private readonly Context _db = new Context();
 
         // GET: api/Cities
-        public IQueryable<City> GetCities()
+        public IQueryable<City> GetCities(string query)
         {
-            return _db.Cities.OrderBy(c => c.Name);
+            return _db.Cities.Where(c => string.IsNullOrEmpty(query) || c.Name.Contains(query) || c.District.Name.Equals(query, StringComparison.OrdinalIgnoreCase)).OrderBy(c => c.Name);
         }
 
         // GET: api/Cities/5
