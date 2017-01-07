@@ -1,25 +1,31 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Data;
+using System.Collections;
 using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Net;
-using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Description;
 using Angular2.Core.DataLayer;
+using Angular2.Core.ServiceLayer;
+using System.Collections.Generic;
 
 namespace Angular2.Web.Controllers.Api
 {
     public class CitiesController : ApiController
     {
         private readonly Context _db = new Context();
+        private readonly ElasticSearchService _elasticSearchService;
+
+        public CitiesController(ElasticSearchService elasticSearchService)
+        {
+            _elasticSearchService = elasticSearchService;
+        }
 
         // GET: api/Cities
-        public IQueryable<City> GetCities(string query)
+        public IEnumerable<City> GetCities(string query)
         {
-            return _db.Cities.Where(c => string.IsNullOrEmpty(query) || c.Name.Contains(query) || c.District.Name.Equals(query, StringComparison.OrdinalIgnoreCase)).OrderBy(c => c.Name);
+            return _elasticSearchService.SearchCities(query);
         }
 
         // GET: api/Cities/5
