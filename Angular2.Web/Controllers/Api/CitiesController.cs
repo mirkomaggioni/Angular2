@@ -15,9 +15,9 @@ namespace Angular2.Web.Controllers.Api
     public class CitiesController : ApiController
     {
         private readonly Context _db = new Context();
-        private readonly ElasticSearchService _elasticSearchService;
+        private readonly CitiesService _elasticSearchService;
 
-        public CitiesController(ElasticSearchService elasticSearchService)
+        public CitiesController(CitiesService elasticSearchService)
         {
             _elasticSearchService = elasticSearchService;
         }
@@ -25,7 +25,7 @@ namespace Angular2.Web.Controllers.Api
         // GET: api/Cities
         public IEnumerable<City> GetCities(string query)
         {
-            return _elasticSearchService.SearchCities(query);
+            return _elasticSearchService.Search(query);
         }
 
         // GET: api/Cities/5

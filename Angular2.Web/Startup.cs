@@ -16,16 +16,19 @@ using Newtonsoft.Json;
 namespace Angular2.Web
 {
     public partial class Startup
-    {   
+    {
         public void Configuration(IAppBuilder app)
         {
             var builder = new ContainerBuilder();
-            builder.RegisterType<ElasticSearchService>()
+
+            builder.Register(c => new ElasticSearchClient("http://localhost:9200", "cities"))
                 .AsSelf()
-                .SingleInstance()
-                .WithParameter(
-                    new TypedParameter(typeof(string), "http://localhost:9200")
-                );
+                .SingleInstance();
+
+            builder.Register(c => new CitiesService(c.Resolve<ElasticSearchClient>(), "cities"))
+                .AsSelf()
+                .AsImplementedInterfaces()
+                .SingleInstance();
 
             var apiControllersAssembly = Assembly.GetAssembly(typeof(CustomersController));
 
@@ -44,8 +47,9 @@ namespace Angular2.Web
             var serializerSettings = config.Formatters.JsonFormatter.SerializerSettings;
             serializerSettings.DateTimeZoneHandling = DateTimeZoneHandling.Local;
 
-            var elasticSearchService = containerBuilder.Resolve<ElasticSearchService>();
-            elasticSearchService.CreateIndex();
+            var citiesService = containerBuilder.Resolve<CitiesService>();
+            citiesService.CreateIndex();
+            citiesService.BulkInsert();
         }
     }
 }
