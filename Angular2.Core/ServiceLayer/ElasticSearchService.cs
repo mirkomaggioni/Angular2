@@ -1,11 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Nest;
+using Context = Angular2.Core.DataLayer.Context;
 
 namespace Angular2.Core.ServiceLayer
 {
     public class ElasticSearchService<T> : IElasticSearchService<T> where T : class
     {
+        protected readonly Context Db = new Context();
         protected readonly ElasticSearchClient ElasticSearchClient;
         protected readonly string IndexName;
 
@@ -13,6 +16,12 @@ namespace Angular2.Core.ServiceLayer
         {
             ElasticSearchClient = elasticSearchClient;
             IndexName = indexName;
+        }
+
+        public virtual void Init()
+        {
+            CheckIndex();
+            BulkInsert(Db.Set<T>().ToList());
         }
 
         public void CheckIndex()

@@ -3,19 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using Angular2.Core.DataLayer;
 using Nest;
-using Context = Angular2.Core.DataLayer.Context;
 
 namespace Angular2.Core.ServiceLayer
 {
     public sealed class CitiesService : ElasticSearchService<City>
     {
-        private readonly Context _db = new Context();
-
-        public CitiesService(ElasticSearchClient elasticSearchClient, string indexName): base(elasticSearchClient, indexName)
-        {
-            CheckIndex();
-            BulkInsert(_db.Cities.ToList());
-        }
+        public CitiesService(ElasticSearchClient elasticSearchClient, string indexName): base(elasticSearchClient, indexName) {}
 
         protected override IResponse CreateIndex()
         {

@@ -52,7 +52,8 @@ namespace Angular2.Web
 
         private static void InitElasticSearchServices(IContainer containerBuilder)
         {
-            containerBuilder.Resolve<CitiesService>();
+            var citiesServices = containerBuilder.Resolve<CitiesService>();
+            citiesServices.Init();
         }
     }
 }
