@@ -88,6 +88,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ServiceLayer\ElasticSearchClient.cs" />
     <Compile Include="ServiceLayer\CitiesService.cs" />
+    <Compile Include="ServiceLayer\ElasticSearchService.cs" />
     <Compile Include="ServiceLayer\IElasticSearchService.cs" />
   </ItemGroup>
   <ItemGroup>

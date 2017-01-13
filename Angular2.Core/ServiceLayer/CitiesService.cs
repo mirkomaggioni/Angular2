@@ -7,37 +7,30 @@ using Context = Angular2.Core.DataLayer.Context;
 
 namespace Angular2.Core.ServiceLayer
 {
-    public class CitiesService : IElasticSearchService<City>
+    public sealed class CitiesService : ElasticSearchService<City>
     {
-        private readonly ElasticSearchClient _elasticSearchClient;
         private readonly Context _db = new Context();
-        private readonly string _indexName;
 
-        public CitiesService(ElasticSearchClient elasticSearchClient, string indexName)
+        public CitiesService(ElasticSearchClient elasticSearchClient, string indexName): base(elasticSearchClient, indexName)
         {
-            _elasticSearchClient = elasticSearchClient;
-            _indexName = indexName;
+            CheckIndex();
+            BulkInsert(_db.Cities.ToList());
         }
 
-        public ICreateIndexResponse CreateIndex()
+        protected override IResponse CreateIndex()
         {
-            var indexDescriptor = new CreateIndexDescriptor(_indexName).Mappings(
+            var indexDescriptor = new CreateIndexDescriptor(IndexName).Mappings(
                 ms => ms.Map<City>(m => m.AutoMap().Properties(ps =>
                     ps.Nested<District>(n => n
                         .Name(nn => nn.District)
                         .AutoMap()))));
 
-            return _elasticSearchClient.GetClient().CreateIndex(_indexName);
+            return ElasticSearchClient.GetClient().CreateIndex(indexDescriptor);
         }
 
-        public IBulkResponse BulkInsert()
+        public override IEnumerable<City> Search(string query)
         {
-            return _elasticSearchClient.GetClient().IndexMany(_db.Cities.ToList(), _indexName);
-        }
-
-        public IEnumerable<City> Search(string query)
-        {
-            var results = _elasticSearchClient.GetClient().Search<City>(c => c.From(0).Size(10).Query(q => q.Prefix(p => p.Name, query) || q.Term("district.name", query)));
+            var results = ElasticSearchClient.GetClient().Search<City>(c => c.From(0).Size(10).Query(q => q.Prefix(p => p.Name, query) || q.Term("district.name", query)));
 
             return results.Documents.OrderBy(d => d.Name);
         }

@@ -47,9 +47,12 @@ namespace Angular2.Web
             var serializerSettings = config.Formatters.JsonFormatter.SerializerSettings;
             serializerSettings.DateTimeZoneHandling = DateTimeZoneHandling.Local;
 
-            var citiesService = containerBuilder.Resolve<CitiesService>();
-            citiesService.CreateIndex();
-            citiesService.BulkInsert();
+            InitElasticSearchServices(containerBuilder);
+        }
+
+        private static void InitElasticSearchServices(IContainer containerBuilder)
+        {
+            containerBuilder.Resolve<CitiesService>();
         }
     }
 }
