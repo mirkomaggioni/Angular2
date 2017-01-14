@@ -46,7 +46,7 @@ namespace Angular2.Core.ServiceLayer
 
         public virtual IEnumerable<T> Search(string query)
         {
-            var results = ElasticSearchClient.GetClient().Search<T>(c => c.From(0).Size(10).Query(q => q.Bool(b => b.Must(m => m.QueryString(qs => qs.DefaultField("_all").Query(query))))));
+            var results = ElasticSearchClient.GetClient().Search<T>(c => c.From(0).Size(10).Query(q => q.Prefix("_all", query)));
 
             return results.Documents;
         }
