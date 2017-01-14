@@ -16,6 +16,7 @@ export class CityComponent {
     @Input() city: City;
     @Output() onSelected = new EventEmitter<City>();
     public cities: City[];
+    public focus: boolean = false;
 
     constructor(private cityService: CityService, private alertService: AlertService, private translateService: TranslateService) {}
 
@@ -29,11 +30,13 @@ export class CityComponent {
 
     public Focus() {
         this.city = { Id: Constants.guidEmpty, Name: "", IdDistrict: Constants.guidEmpty };
+        this.focus = true;
         this.onSelected.emit(this.city);
     }
 
     public Select(city: City) {
         this.city = city;
+        this.focus = false;
         this.onSelected.emit(this.city);
         this.cities = null;
     }

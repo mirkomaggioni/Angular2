@@ -42,17 +42,20 @@ textarea {
   width: 1em;
   height: 4em;
 }
+
 .loader:before,
 .loader:after {
   position: absolute;
   top: 0;
   content: '';
 }
+
 .loader:before {
   left: -1.5em;
   -webkit-animation-delay: -0.32s;
   animation-delay: -0.32s;
 }
+
 .loader {
   color: #ffffff;
   text-indent: -9999em;
@@ -65,9 +68,11 @@ textarea {
   -webkit-animation-delay: -0.16s;
   animation-delay: -0.16s;
 }
+
 .loader:after {
   left: 1.5em;
 }
+
 @-webkit-keyframes load1 {
   0%,
   80%,
@@ -80,6 +85,7 @@ textarea {
     height: 5em;
   }
 }
+
 @keyframes load1 {
   0%,
   80%,
@@ -91,4 +97,25 @@ textarea {
     box-shadow: 0 -2em;
     height: 5em;
   }
+}
+
+.select-cities {
+  border: 1px solid #66afe9;
+  border-radius: 4px 4px 4px 4px;
+  width: 91%;
+}
+
+.select-cities .input-field {
+  border: 0px;
+}
+
+.cities-results {
+  overflow-x: hidden;
+  overflow-y: auto;
+  position: relative;
+  padding: 5px 0 0 5px;
+}
+
+.cities-results li {
+  list-style: none;
 }
