@@ -1,4 +1,4 @@
-import { Injectable, Input, Output, EventEmitter } from "@angular/core";
+import { Injectable, Input, Output, EventEmitter, ViewContainerRef } from "@angular/core";
 import { ToastsManager} from "ng2-toastr";
 
 @Injectable()
@@ -29,5 +29,9 @@ export class AlertService {
 
     public Success(message: string) {
         this.manager.success(message);
+    }
+
+    public SetViewContainerRef(vcr: ViewContainerRef) {
+        this.manager.setRootViewContainerRef(vcr);
     }
 }

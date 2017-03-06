@@ -16,6 +16,7 @@ export class AppComponent {
         translateService.setDefaultLang("en");
         translateService.use("en");
         this.viewContainerRef = viewContainerRef;
+        this.alertService.SetViewContainerRef(this.viewContainerRef);
     }
 
     ngOnInit() {

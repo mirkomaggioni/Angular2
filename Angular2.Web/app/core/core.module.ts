@@ -3,14 +3,9 @@ import { ToastModule } from "ng2-toastr/ng2-toastr";
 import { SearchService } from "./search.service";
 import { AlertService } from "./alert.service";
 
-let options: any = {
-  autoDismiss: true,
-  positionClass: 'toast-bottom-right',
-};
-
 @NgModule ({
   imports: [
-    ToastModule.forRoot(options)
+    ToastModule.forRoot()
   ]
 })
 
